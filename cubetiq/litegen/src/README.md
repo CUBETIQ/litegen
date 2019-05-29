@@ -1,5 +1,34 @@
-# Installation
-## Register Provider
-`
-dsfsdfsd
-`
+# Lite Generator
+
+## Installation
+> composer.json 
+```json
+"autoload": {
+        ...
+        "psr-4": {
+            ...
+            "Cubetiq\\Litegen\\": "packages/cubetiq/litegen/src"
+        },
+        ...
+    },
+```
+
+```sh
+$ composer install
+```
+
+> config/app.php
+```php
+'providers' => [
+        ...
+        /*
+         * Lite Generator Provider
+         */
+        \Cubetiq\Litegen\provider\LitegenServiceProvider::class
+    ],
+
+```
+
+```sh
+$ php artisan vendor:publish --provider="Cubetiq\Litegen\provider\LitegenServiceProvider"
+```
