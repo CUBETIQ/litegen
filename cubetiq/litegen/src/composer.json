@@ -2,11 +2,17 @@
     "name": "cubetiq/litegen",
     "description": "Using in generating model , controller , view , migration",
     "license": "MIT",
+    "version": "1.0.0",
+    "autoload": {
+
+    },
     "authors": [
         {
             "name": "SAX",
             "email": "SAX@info.com"
         }
     ],
-    "require": {}
+    "require": {
+        "laravel/framework": "*"
+    }
 }
