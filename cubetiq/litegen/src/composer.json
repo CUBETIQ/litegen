@@ -1,0 +1,12 @@
+{
+    "name": "cubetiq/litegen",
+    "description": "Using in generating model , controller , view , migration",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SAX",
+            "email": "SAX@info.com"
+        }
+    ],
+    "require": {}
+}
