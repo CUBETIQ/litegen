@@ -36,8 +36,7 @@ trait SubProjectContoller
 //        throw new \Exception("Not Implement Projectname");
 //    }
 //
-//    protected function isProjectExist(){
-////        $name=$this->getProjectname();
-//        return file_exists(config('litegen.path'));
-//    }
+    protected function isProjectExist(){
+        return file_exists(Configuration::get_project_path());
+    }
 }

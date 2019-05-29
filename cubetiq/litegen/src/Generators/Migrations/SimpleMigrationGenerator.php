@@ -23,14 +23,12 @@ class SimpleMigrationGenerator extends BaseGeneratorRepository implements Migrat
     protected function getTargetPath()
     {
         if ($this->current === 'create') {
-            return $this
-                    ->subProjectPath($this->getProjectname())
-                . "database/migrations/" . Carbon::now()->format('Y_m_d_Hisu')
+            return Configuration::get_project_path()
+                . "/database/migrations/" . Carbon::now()->format('Y_m_d_Hisu')
                 . "_".$this->current."_$this->table_name" . "_table.php";
         } else {
-            return $this
-                    ->subProjectPath($this->getProjectname())
-                . "database/migrations/" . Carbon::now()->format('Y_m_d_Hisu')
+            return Configuration::get_project_path()
+                . "/database/migrations/" . Carbon::now()->format('Y_m_d_Hisu')
                 . "_".$this->current."_". $this->table_config['from']['table']."_".$this->table_config['to']['table']  . "_relationship.php";
         }
 
@@ -38,8 +36,8 @@ class SimpleMigrationGenerator extends BaseGeneratorRepository implements Migrat
 
     public function parse()
     {
-        $this->files->deleteDirectory($this->subProjectPath() . "/database/migrations");
-        $configs = Configuration::getConfigs();
+        $this->files->deleteDirectory(Configuration::get_project_path() . "/database/migrations");
+        $configs = Configuration::getConfigData();
         $this->process_all($configs);
     }
 
@@ -88,12 +86,12 @@ class SimpleMigrationGenerator extends BaseGeneratorRepository implements Migrat
     protected function getContent()
     {
         if ($this->current === 'create') {
-            $result = "<?php" . PHP_EOL . view('generator.migration_column', [
+            $result = "<?php" . PHP_EOL . view('litegen::generator.migration_column', [
                     "config" => $this->table_config,
                     "class" => $this->table_name
                 ])->render();
         } else {
-            $result = "<?php" . PHP_EOL . view('generator.migration_relationship', [
+            $result = "<?php" . PHP_EOL . view('litegen::generator.migration_relationship', [
                     "config" => $this->table_config,
                     "class" => $this->table_name
                 ])->render();

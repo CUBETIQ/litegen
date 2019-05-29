@@ -8,7 +8,7 @@ class Configuration
 {
     private static $project_name = null;
     private static $project_store_path = null;
-    private static $tables_config;
+    private static $config_data;
 
     public static function getProjectname()
     {
@@ -25,17 +25,17 @@ class Configuration
             self::$project_name = $name;
     }
 
-    public static function getConfigs()
+    public static function getConfigData()
     {
-        if (!self::$tables_config) {
+        if (!self::$config_data) {
             throw new \Exception("Config is null");
         }
-        return self::$tables_config;
+        return self::$config_data;
     }
 
-    public static function setConfigs($configs)
+    public static function setConfigData($configs)
     {
-        self::$tables_config = $configs;
+        self::$config_data = $configs;
     }
 
     public static function get_store_path()

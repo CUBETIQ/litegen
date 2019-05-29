@@ -15,14 +15,17 @@ class GenerateMigrationCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'litegen:migration {name}';
+    protected $signature = 'litegen:migration 
+    {--N|name= : Project Name (Default Current Project)}
+    {--P|path= : Project Path (Default Current Path)}
+    ';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Generate Migration';
 
     /**
      * @var MigrationGeneratorInterface
@@ -46,18 +49,13 @@ class GenerateMigrationCommand extends Command
      */
     public function handle()
     {
-        $project_name = $this->argument("name");
-
-        Configuration::setProjectname($project_name);
-        Configuration::setConfigs(config('sample.tables'));
+        Configuration::setProjectname($this->option('name'));
+        Configuration::set_store_path($this->option('path'));
+        Configuration::setConfigData(config('sample.tables'));
 
         if (!$this->isProjectExist()) {
             throw new \Exception("Project is not exist");
         }
-
-        $configs=Configuration::getConfigs();
-
-        $tables=array_keys($configs['columns']);
 
         $this->migration->parse();        //
     }
