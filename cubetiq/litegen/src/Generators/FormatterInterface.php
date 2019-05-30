@@ -4,7 +4,7 @@
 namespace Cubetiq\Litegen\Generators;
 
 
-interface FormatterInterface
+ interface FormatterInterface
 {
     /**
      * formatter config match to do migration format
@@ -12,7 +12,7 @@ interface FormatterInterface
      * @param $data
      * @return mixed
      */
-    public function format_for_migration($data);
+    public    function format_for_migration($data);
 
     /**
      * formatter entry config data match to do model format
@@ -20,5 +20,6 @@ interface FormatterInterface
      * @param $data
      * @return mixed
      */
-    public function format_for_model($data);
+    public    function format_for_model($data);
+
 }

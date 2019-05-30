@@ -14,11 +14,9 @@ use Illuminate\Filesystem\Filesystem;
 class SimpleMigrationGenerator extends BaseGeneratorRepository implements MigrationGeneratorInterface
 {
     private $files;
-    private $formatter;
 
-    public function __construct(Filesystem $fs,FormatterInterface $fm)
+    public function __construct(Filesystem $fs)
     {
-        $this->formatter=$fm;
         $this->files = $fs;
         parent::__construct($fs);
     }
@@ -40,8 +38,8 @@ class SimpleMigrationGenerator extends BaseGeneratorRepository implements Migrat
     public function parse()
     {
         $this->files->deleteDirectory(Configuration::get_project_path() . "/database/migrations");
-        $configs = Configuration::getConfigData();
-        $configs=$this->formatter->format_for_migration($configs);
+        $configs = Configuration::get_migration_configData();
+//        $configs=$this->formatter->format_for_migration($configs);
         $this->process_all($configs);
     }
 

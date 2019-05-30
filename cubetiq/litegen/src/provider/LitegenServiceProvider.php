@@ -31,7 +31,9 @@ class LitegenServiceProvider extends ServiceProvider
         $this->app->bind(MigrationGeneratorInterface::class,config('litegen.renderer.migration',SimpleMigrationGenerator::class));
         $this->app->bind(ModelGeneratorInterface::class,config('litegen.renderer.model',SimpleModelGenerator::class));
 
-        $this->app->bind(FormatterInterface::class,config('formatter',SimpleFormatter::class));
+
+        $this->app->bind(FormatterInterface::class,config('litegen.formatter',SimpleFormatter::class));
+
     }
 
     /**
@@ -51,6 +53,8 @@ class LitegenServiceProvider extends ServiceProvider
         $this->publishes([
             $this->packagedir('config/litegen.php') => base_path('config/litegen.php'),
         ]);
+
+
     }
 
     private function packagedir($path){

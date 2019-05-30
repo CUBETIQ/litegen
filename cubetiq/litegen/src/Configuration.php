@@ -4,11 +4,28 @@
 namespace Cubetiq\Litegen;
 
 
+use Cubetiq\Litegen\Generators\Formatter\SimpleFormatter;
+use Cubetiq\Litegen\Generators\FormatterInterface;
+
 class Configuration
 {
     private static $project_name = null;
     private static $project_store_path = null;
     private static $config_data;
+    /**
+     * @var FormatterInterface
+     */
+    private static $formatter;
+
+    /**
+     * @return FormatterInterface
+     */
+    private static function getFormatter(){
+        if(self::$formatter)
+            return self::$formatter;
+        self::$formatter=app(config('litegen.formatter',SimpleFormatter::class));
+        return self::getFormatter();
+    }
 
     public static function getProjectname()
     {
@@ -49,7 +66,6 @@ class Configuration
         return config('litegen.project_store_path') ?? $current_project_storepath;
     }
 
-
     public static function set_store_path($path)
     {
         if ($path)
@@ -58,5 +74,16 @@ class Configuration
 
     public static  function get_project_path(){
         return self::get_store_path().DIRECTORY_SEPARATOR.self::getProjectname();
+    }
+
+
+
+    public static function get_model_configData(){
+        return self::getFormatter()->format_for_model(self::getConfigData());
+    }
+
+    public static function get_migration_configData(){
+        return self::getFormatter()->format_for_migration(self::getConfigData());
+
     }
 }

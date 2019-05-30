@@ -7,14 +7,16 @@ namespace Cubetiq\Litegen\Generators\Formatter;
 use Cubetiq\Litegen\Definitions\ModelType;
 use Cubetiq\Litegen\Definitions\RelationshipType;
 use Cubetiq\Litegen\Generators\FormatterInterface;
+use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Str;
 
 class SimpleFormatter implements FormatterInterface
 {
+
     /**
      * @inheritDoc
      */
-    public function format_for_migration($data)
+    public  function format_for_migration($data)
     {
         return $data;
     }
@@ -22,7 +24,7 @@ class SimpleFormatter implements FormatterInterface
     /**
      * @inheritDoc
      */
-    public function format_for_model($data)
+    public  function format_for_model($data)
     {
         $tables=$data['columns'];
         $tables=array_map(function ($table){
@@ -73,8 +75,6 @@ class SimpleFormatter implements FormatterInterface
             $tables[$relation['from']['table']][Str::snake($relation['from']['column'])]=$from;
             $tables[$relation['to']['table']][Str::snake($relation['to']['column'])]=$to;
         }
-
-        dd($tables);
         return $tables;
     }
 }

@@ -15,21 +15,17 @@ use Illuminate\Support\Str;
 
 class SimpleModelGenerator extends BaseGeneratorRepository implements ModelGeneratorInterface
 {
-    private $formatter;
     private $table_name = null;
     private $table_config = null;
 
-    public function __construct(Filesystem $fs, FormatterInterface $frm)
+    public function __construct(Filesystem $fs)
     {
-        $this->formatter = $frm;
         parent::__construct($fs);
     }
 
     public function parse()
     {
-        $configs = Configuration::getConfigData();
-        $configs = $this->formatter->format_for_model($configs);
-
+        $configs = Configuration::get_model_configData();
         foreach ($configs as $table => $config) {
             $this->table_name = $table;
             $this->table_config = $config;
@@ -58,10 +54,6 @@ class SimpleModelGenerator extends BaseGeneratorRepository implements ModelGener
                 $relationships[$key] = $column;
             }
         });
-//        array_map(function ($column){
-//            dd($column);
-//
-//        },$this->table_config);
 
         return "<?php" . PHP_EOL . view('litegen::generator.models.model_template', [
                 "class" => $this->table_name,
