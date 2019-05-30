@@ -31,7 +31,6 @@ class LitegenServiceProvider extends ServiceProvider
         $this->app->bind(MigrationGeneratorInterface::class,config('litegen.renderer.migration',SimpleMigrationGenerator::class));
         $this->app->bind(ModelGeneratorInterface::class,config('litegen.renderer.model',SimpleModelGenerator::class));
 
-
         $this->app->bind(FormatterInterface::class,config('litegen.formatter',SimpleFormatter::class));
 
     }

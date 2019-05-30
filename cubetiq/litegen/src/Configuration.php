@@ -44,6 +44,7 @@ class Configuration
 
     public static function getConfigData()
     {
+//        return config('sample.tables');
         if (!self::$config_data) {
             throw new \Exception("Config is null");
         }

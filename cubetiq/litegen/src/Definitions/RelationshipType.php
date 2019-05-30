@@ -4,7 +4,9 @@
 namespace Cubetiq\Litegen\Definitions;
 
 
-class RelationshipType
+use Cubetiq\Litegen\Base\BaseTypeAbstract;
+
+class RelationshipType extends BaseTypeAbstract
 {
     const ONE_TO_ONE="OTO";
     const ONE_TO_MANY="OTM";
