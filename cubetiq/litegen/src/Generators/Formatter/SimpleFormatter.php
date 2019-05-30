@@ -71,7 +71,6 @@ class SimpleFormatter implements FormatterInterface
             $from['table']=$ttable['table'];
             $to['table']=$ftable['table'];
 
-
             $tables[$relation['from']['table']][Str::snake($relation['from']['column'])]=$from;
             $tables[$relation['to']['table']][Str::snake($relation['to']['column'])]=$to;
         }
