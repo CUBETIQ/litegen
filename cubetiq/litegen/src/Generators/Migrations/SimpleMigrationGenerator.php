@@ -6,6 +6,7 @@ namespace Cubetiq\Litegen\Generators\Migrations;
 
 use Cubetiq\Litegen\Base\BaseGeneratorRepository;
 use Cubetiq\Litegen\Configuration;
+use Cubetiq\Litegen\Generators\FormatterInterface;
 use Cubetiq\Litegen\Generators\MigrationGeneratorInterface;
 use Carbon\Carbon;
 use Illuminate\Filesystem\Filesystem;
@@ -13,9 +14,11 @@ use Illuminate\Filesystem\Filesystem;
 class SimpleMigrationGenerator extends BaseGeneratorRepository implements MigrationGeneratorInterface
 {
     private $files;
+    private $formatter;
 
-    public function __construct(Filesystem $fs)
+    public function __construct(Filesystem $fs,FormatterInterface $fm)
     {
+        $this->formatter=$fm;
         $this->files = $fs;
         parent::__construct($fs);
     }
@@ -38,6 +41,7 @@ class SimpleMigrationGenerator extends BaseGeneratorRepository implements Migrat
     {
         $this->files->deleteDirectory(Configuration::get_project_path() . "/database/migrations");
         $configs = Configuration::getConfigData();
+        $configs=$this->formatter->format_for_migration($configs);
         $this->process_all($configs);
     }
 

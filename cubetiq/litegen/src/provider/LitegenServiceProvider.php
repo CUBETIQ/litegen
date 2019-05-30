@@ -5,9 +5,12 @@ namespace Cubetiq\Litegen\provider;
 use Cubetiq\Litegen\Commands\GenerateMigrationCommand;
 use Cubetiq\Litegen\Commands\GenerateInitializeCommand;
 use Cubetiq\Litegen\Commands\GenerateModelCommand;
+use Cubetiq\Litegen\Generators\Formatter\SimpleFormatter;
+use Cubetiq\Litegen\Generators\FormatterInterface;
 use Cubetiq\Litegen\Generators\MigrationGeneratorInterface;
 use Cubetiq\Litegen\Generators\Migrations\SimpleMigrationGenerator;
 use Cubetiq\Litegen\Generators\ModelGeneratorInterface;
+use Cubetiq\Litegen\Generators\Models\SimpleModelGenerator;
 use Illuminate\Support\ServiceProvider;
 
 class LitegenServiceProvider extends ServiceProvider
@@ -25,8 +28,10 @@ class LitegenServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        $this->app->bind(MigrationGeneratorInterface::class,config('litegen.renderer.migration'));
-        $this->app->bind(ModelGeneratorInterface::class,config('litegen.renderer.model'));
+        $this->app->bind(MigrationGeneratorInterface::class,config('litegen.renderer.migration',SimpleMigrationGenerator::class));
+        $this->app->bind(ModelGeneratorInterface::class,config('litegen.renderer.model',SimpleModelGenerator::class));
+
+        $this->app->bind(FormatterInterface::class,config('formatter',SimpleFormatter::class));
     }
 
     /**
