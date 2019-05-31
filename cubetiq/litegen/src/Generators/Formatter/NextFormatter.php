@@ -33,10 +33,10 @@ class NextFormatter extends SimpleFormatter implements FormatterInterface
 
         foreach ($data as $table_name=>$columns){
             foreach ($columns as $column_name => $config){
-                if(array_search($config['type'],$migration_type)){
+                if(in_array($config['type'],$migration_type)){
                     $temp_columns[$table_name][$column_name]=$config;
                 }
-                else if(array_search($config['type'],$model_type)){
+                else if(in_array($config['type'],$model_type)){
                     $type=null;
                     switch ($config['type']){
                         case ModelType::HAS_MANY:

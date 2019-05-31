@@ -10,7 +10,7 @@ class SampleFormatter implements FormatterInterface
 {
     public function format_for_controller($data)
     {
-        return config('sample_controller.controllers');
+        return config('sample_controller');
         return $data;
     }
 

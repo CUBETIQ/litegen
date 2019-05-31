@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
     @endphp
 
     Route::group(["as"=>"{{$name}}.","prefix"=>"{{$name}}"],function (){
-    @if($config['list'] ?? false)
+    @if($config['index'] ?? false)
 
         Route::get("/","{{\Illuminate\Support\Str::studly($table)}}Controller@index")->name('index');
 

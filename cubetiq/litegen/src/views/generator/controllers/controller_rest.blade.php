@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 class {{\Illuminate\Support\Str::studly($class)}}Controller extends Controller
 {
-@if($config['list'] ?? false)
+@if($config['index'] ?? false)
 
     /**
     * Display a listing of the resource.
@@ -14,7 +14,7 @@ class {{\Illuminate\Support\Str::studly($class)}}Controller extends Controller
     */
     public function index()
     {
-    // Hello
+    //
     }
 
 @endif

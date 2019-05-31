@@ -18,6 +18,6 @@ trait OutputConsole
 
     protected function info_msg(String $message){
         $str="<info>$message</info>";
-        $this->getConsoleOutput()->writeln($str);
+        $this->getConsoleOutput()->writeln($str.PHP_EOL);
     }
 }
