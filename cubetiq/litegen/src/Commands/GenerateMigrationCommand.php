@@ -51,7 +51,7 @@ class GenerateMigrationCommand extends Command
     {
         Configuration::setProjectname($this->option('name'));
         Configuration::set_store_path($this->option('path'));
-        Configuration::setConfigData(config('sample.tables'));
+        Configuration::setConfigData(config('sample_migration'));
 
         if (!$this->isProjectExist()) {
             throw new \Exception("Project is not exist");

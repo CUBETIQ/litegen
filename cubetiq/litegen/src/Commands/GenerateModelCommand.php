@@ -53,7 +53,7 @@ class GenerateModelCommand extends Command
     {
         Configuration::setProjectname($this->option('name'));
         Configuration::set_store_path($this->option('path'));
-        Configuration::setConfigData(config('sample.tables'));
+        Configuration::setConfigData(config('sample_model'));
 
         if (!$this->isProjectExist()) {
             throw new \Exception("Project is not exist");
