@@ -1,9 +1,16 @@
-
+@php
+    $name=\Illuminate\Support\Str::studly($class);
+    $class=\Illuminate\Support\Str::singular(\Illuminate\Support\Str::lower($name));
+    $Class=\Illuminate\Support\Str::singular(\Illuminate\Support\Str::ucfirst($name));
+    $classes=\Illuminate\Support\Str::plural($class);
+    $Classes=\Illuminate\Support\Str::plural($class);
+@endphp
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\{{$name}};
 
-class {{\Illuminate\Support\Str::studly($class)}}Controller extends Controller
+class {{$name}}Controller extends Controller
 {
 @if($config['index'] ?? false)
 
@@ -15,6 +22,10 @@ class {{\Illuminate\Support\Str::studly($class)}}Controller extends Controller
     public function index()
     {
     //
+        ${{$classes}}={{$name}}::all();
+        return view('{{$name}}.index',[
+            "{{$classes}}"=>${{$classes}}
+        ]);
     }
 
 @endif

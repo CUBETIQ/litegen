@@ -24,7 +24,7 @@ class GenerateInitializeCommand extends BaseCommand
      * @var string
      */
     protected $signature = 'litegen:init 
-    {--N|project_name= : Project name} 
+    {--N|name= : Project name} 
     {--P|path= : Project Store path}';
 
     /**
@@ -57,7 +57,8 @@ class GenerateInitializeCommand extends BaseCommand
      */
     public function handle()
     {
-        Configuration::setProjectname($this->option('project_name'));
+        dd($this->options());
+        Configuration::setProjectname($this->option('name'));
         Configuration::set_store_path($this->option('path') );
 
         $project_name = Configuration::getProjectname();

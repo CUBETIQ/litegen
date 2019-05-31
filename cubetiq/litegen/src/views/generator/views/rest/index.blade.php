@@ -1,9 +1,17 @@
+@php
+    $name=\Illuminate\Support\Str::studly($class);
+    $class=\Illuminate\Support\Str::singular(\Illuminate\Support\Str::lower($name));
+    $Class=\Illuminate\Support\Str::singular(\Illuminate\Support\Str::ucfirst($name));
+    $classes=\Illuminate\Support\Str::plural($class);
+    $Classes=\Illuminate\Support\Str::plural($class);
+@endphp
+
 <h1>
-    List All    {{\Illuminate\Support\Str::studly($class)}}
+    List All {{$Classes}}
 </h1>
 
 {{"@"."php"}}
 
-        dd($item);
+        dd(${{$classes}});
 
 {{"@"."endphp"}}
