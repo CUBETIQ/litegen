@@ -18,7 +18,7 @@ class GenerateResourceCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'litegen:view 
+    protected $signature = 'litegen:resource 
     {--N|name= : Project Name (Default Current Project)}
     {--P|path= : Project Path (Default Current Path)}
     ';

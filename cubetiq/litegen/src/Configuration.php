@@ -95,4 +95,8 @@ class Configuration
     public static function get_route_configData(){
         return self::getFormatter()->format_for_route(self::getConfigData());
     }
+
+    public static function get_resource_configData(){
+        return self::getFormatter()->format_for_resource(self::getConfigData());
+    }
 }

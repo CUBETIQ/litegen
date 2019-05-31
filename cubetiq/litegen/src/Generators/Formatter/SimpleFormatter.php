@@ -28,19 +28,37 @@ class SimpleFormatter implements FormatterInterface
     {
         return $data;
     }
-
+    /**
+     * @inheritDoc
+     */
     public function format_for_controller($data)
     {
         return $data;
 
     }
 
+
+    /**
+     * @inheritDoc
+     */
     public function format_for_view($data)
     {
         return $data;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function format_for_route($data)
+    {
+        return $data;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function format_for_resource($data)
     {
         return $data;
     }

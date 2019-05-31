@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Route;
         Route::get("/","{{\Illuminate\Support\Str::studly($table)}}Controller@index")->name('index');
 
     @endif
+    @if($config['show'] ?? false)
+
+        Route::get("/{id}","{{\Illuminate\Support\Str::studly($table)}}Controller{!!  "@"."show" !!}")->name('show');
+
+    @endif
     @if($config['create'] ?? false)
 
         Route::get("/create","{{\Illuminate\Support\Str::studly($table)}}Controller@create")->name('create');
@@ -27,11 +32,7 @@ use Illuminate\Support\Facades\Route;
         Route::delete("/{id}","{{\Illuminate\Support\Str::studly($table)}}Controller@destroy")->name('delete');
 
     @endif
-    @if($config['show'] ?? false)
 
-        Route::get("/{id}","{{\Illuminate\Support\Str::studly($table)}}Controller{!!  "@"."show" !!}")->name('show');
-
-    @endif
 
     });
 

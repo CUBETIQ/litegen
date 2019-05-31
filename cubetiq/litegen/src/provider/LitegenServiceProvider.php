@@ -6,6 +6,7 @@ use Cubetiq\Litegen\Commands\GenerateControllerCommand;
 use Cubetiq\Litegen\Commands\GenerateMigrationCommand;
 use Cubetiq\Litegen\Commands\GenerateInitializeCommand;
 use Cubetiq\Litegen\Commands\GenerateModelCommand;
+use Cubetiq\Litegen\Commands\GenerateResourceCommand;
 use Cubetiq\Litegen\Commands\GenerateRouteCommand;
 use Cubetiq\Litegen\Commands\GenerateViewCommand;
 use Cubetiq\Litegen\Generators\Controller\SimpleControllerGenerator;
@@ -16,6 +17,8 @@ use Cubetiq\Litegen\Generators\MigrationGeneratorInterface;
 use Cubetiq\Litegen\Generators\Migrations\SimpleMigrationGenerator;
 use Cubetiq\Litegen\Generators\ModelGeneratorInterface;
 use Cubetiq\Litegen\Generators\Models\SimpleModelGenerator;
+use Cubetiq\Litegen\Generators\Resource\SimpleResourceGenerator;
+use Cubetiq\Litegen\Generators\ResourceGeneratorInterface;
 use Cubetiq\Litegen\Generators\Route\SimpleRouteGenerator;
 use Cubetiq\Litegen\Generators\RouteGeneratorInterface;
 use Cubetiq\Litegen\Generators\View\SimpleViewGenerator;
@@ -30,7 +33,8 @@ class LitegenServiceProvider extends ServiceProvider
         GenerateModelCommand::class,
         GenerateControllerCommand::class,
         GenerateViewCommand::class,
-        GenerateRouteCommand::class
+        GenerateRouteCommand::class,
+        GenerateResourceCommand::class
     ];
 
     /**
@@ -45,6 +49,8 @@ class LitegenServiceProvider extends ServiceProvider
         $this->app->bind(ControllerGeneratorInterface::class, config('litegen.renderer.controller', SimpleControllerGenerator::class));
         $this->app->bind(ViewGeneratorInterface::class, config('litegen.renderer.view', SimpleViewGenerator::class));
         $this->app->bind(RouteGeneratorInterface::class, config('litegen.renderer.route', SimpleRouteGenerator::class));
+        $this->app->bind(ResourceGeneratorInterface::class, config('litegen.renderer.resource', SimpleResourceGenerator::class));
+
 
         $this->app->bind(FormatterInterface::class, config('litegen.formatter', SimpleFormatter::class));
 
@@ -60,7 +66,7 @@ class LitegenServiceProvider extends ServiceProvider
 
 //        dd( __DIR__."/../config/litegen.php");
         //
-        $this->loadViewsFrom($this->packagedir('views'), "litegen");
+        $this->loadViewsFrom($this->packagedir('Templates'), "litegen");
 
         $this->commands($this->commands);
 
