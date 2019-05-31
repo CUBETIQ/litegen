@@ -26,6 +26,7 @@ class SimpleModelGenerator extends BaseGeneratorRepository implements ModelGener
     public function parse()
     {
         $configs = Configuration::get_model_configData();
+        dd($configs);
         foreach ($configs as $table => $config) {
             $this->table_name = $table;
             $this->table_config = $config;

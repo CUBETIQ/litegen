@@ -44,7 +44,6 @@ class Configuration
 
     public static function getConfigData()
     {
-//        return config('sample.tables');
         if (!self::$config_data) {
             throw new \Exception("Config is null");
         }
@@ -77,14 +76,18 @@ class Configuration
         return self::get_store_path().DIRECTORY_SEPARATOR.self::getProjectname();
     }
 
-
+    public static function get_controllers_data(){
+        return config('sample_controller.controllers');
+        return self::getFormatter()->format_for_controller(self::getConfigData());
+    }
 
     public static function get_model_configData(){
+        return config('sample_model.tables');
         return self::getFormatter()->format_for_model(self::getConfigData());
     }
 
     public static function get_migration_configData(){
+        return config('sample_migration.tables');
         return self::getFormatter()->format_for_migration(self::getConfigData());
-
     }
 }

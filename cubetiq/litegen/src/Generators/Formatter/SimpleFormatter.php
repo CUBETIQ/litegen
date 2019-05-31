@@ -76,4 +76,10 @@ class SimpleFormatter implements FormatterInterface
         }
         return $tables;
     }
+
+    public function format_for_controller($data)
+    {
+        return $data;
+
+    }
 }

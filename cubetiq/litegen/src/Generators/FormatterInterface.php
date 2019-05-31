@@ -22,4 +22,12 @@ namespace Cubetiq\Litegen\Generators;
      */
     public    function format_for_model($data);
 
+     /**
+      * Format Given data to Controller Format
+      *
+      * @param $data
+      * @return mixed
+      */
+    public  function format_for_controller($data);
+
 }
