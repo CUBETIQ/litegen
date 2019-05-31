@@ -74,6 +74,8 @@ class LitegenServiceProvider extends ServiceProvider
             $this->packagedir('config/litegen.php') => base_path('config/litegen.php'),
             $this->packagedir('sample/sample_model.php') => base_path('config/sample_model.php'),
             $this->packagedir('sample/sample_migration.php') => base_path('config/sample_migration.php'),
+            $this->packagedir('sample/sample_controller.php') => base_path('config/sample_controller.php'),
+
         ]);
 
 

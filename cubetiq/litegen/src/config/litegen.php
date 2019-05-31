@@ -8,10 +8,13 @@ return [
     "renderer"=>[
         "migration"=>\Cubetiq\Litegen\Generators\Migrations\SimpleMigrationGenerator::class,
         "model"=>\Cubetiq\Litegen\Generators\Models\SimpleModelGenerator::class,
-        "controller"=>\Cubetiq\Litegen\Generators\Controller\SimpleControllerGenerator::class
+        "controller"=>\Cubetiq\Litegen\Generators\Controller\SimpleControllerGenerator::class,
+        "resource"=>\Cubetiq\Litegen\Generators\Resource\SimpleResourceGenerator::class,
+        "route"=>\Cubetiq\Litegen\Generators\Route\SimpleRouteGenerator::class,
+        "view"=>\Cubetiq\Litegen\Generators\View\SimpleViewGenerator::class
     ],
 
-    "formatter"=>\Cubetiq\Litegen\Generators\Formatter\NextFormatter::class,
+    "formatter"=>\Cubetiq\Litegen\Generators\Formatter\SimpleFormatter::class,
 
     "migration"=>[
 //        "method"=>[

@@ -1,0 +1,27 @@
+<?php
+return [
+    'actions'=>[
+        "invoices"=>[
+            "index"=>true,
+            "edit"=>true,
+            "delete"=>true,
+            "create"=>true,
+            "show"=>true
+        ],
+        "product"=>[
+            "index"=>true,
+            "edit"=>true,
+            "delete"=>true,
+            "create"=>true
+        ],
+        "staff"=>[
+            "index"=>true,
+            "edit"=>true,
+            "delete"=>true,
+            "create"=>true
+        ],
+        "invoice_details"=>[
+            "index"=>true
+        ]
+    ]
+];
