@@ -39,14 +39,14 @@ trait StubGeneratorTrait
     }
 
     /**
-     * Generate File
-     *
+     * @param $output string : Output path , if not exist , get from getContent()
+     * @param $content string : Content as String , if not exist , get from getOutput()
      * @throws \Exception
      */
-    protected function generate()
+    protected function generate($output=null,$content=null)
     {
-        $output_path=$this->getTargetPath();
-        $content=$this->getContent();
+        $output_path=$output ?? $this->getTargetPath();
+        $content=$content ?? $this->getContent();
 
         if ($this->files->exists($output_path)) {
             $this->info_msg($output_path . " is existed , Override !");
@@ -55,7 +55,7 @@ trait StubGeneratorTrait
 
         $this->files->put($output_path, $content);
 
-        $this->info_msg("finish !");
+        $this->info_msg("finish > ".$output_path);
     }
 
     /**
