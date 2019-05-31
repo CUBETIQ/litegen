@@ -28,7 +28,7 @@ class GenerateRouteCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Generate Model';
+    protected $description = 'Generate Route';
 
     /**
      * @var RouteGeneratorInterface

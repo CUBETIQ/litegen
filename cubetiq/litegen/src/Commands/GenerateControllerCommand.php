@@ -22,6 +22,10 @@ class GenerateControllerCommand extends Command
     protected $signature = 'litegen:controller 
     {--N|name= : Project Name (Default Current Project)}
     {--P|path= : Project Path (Default Current Path)}
+    {--R|route : Generate with route}
+    {--I|view : Generate with view)}
+
+    
     ';
 
     /**
@@ -35,6 +39,7 @@ class GenerateControllerCommand extends Command
      * @var ModelGeneratorInterface
      */
     private $controller;
+
     /**
      * Create a new command instance.
      *
@@ -42,7 +47,7 @@ class GenerateControllerCommand extends Command
      */
     public function __construct(ControllerGeneratorInterface $ctr)
     {
-        $this->controller=$ctr;
+        $this->controller = $ctr;
         parent::__construct();
     }
 
@@ -55,16 +60,25 @@ class GenerateControllerCommand extends Command
     {
         Configuration::setProjectname($this->option('name'));
         Configuration::set_store_path($this->option('path'));
+
+        // Call Route
+        if ($this->option('route')){
+            $this->info("run rioute");
+            Artisan::call('litegen:route');
+        }
+
+        // Call View
+        if ($this->option('view')){
+            $this->info('run view');
+            Artisan::call('litegen:view');
+        }
+
+        // Controller Generate from here
         Configuration::setConfigData(config('sample_controller'));
 
         if (!$this->isProjectExist()) {
             throw new \Exception("Project is not exist");
         }
-
-        // Route
-        Artisan::call('litegen:route');
-        // View
-        Artisan::call('litegen:view');
 
         $this->controller->parse();        //
     }

@@ -27,7 +27,7 @@ class GenerateViewCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Generate Model';
+    protected $description = 'Generate View';
 
     /**
      * @var ModelGeneratorInterface
