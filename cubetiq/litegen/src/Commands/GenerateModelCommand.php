@@ -6,6 +6,7 @@ namespace Cubetiq\Litegen\Commands;
 
 use Cubetiq\Litegen\Base\traits\SubProjectContoller;
 use Cubetiq\Litegen\Configuration;
+use Cubetiq\Litegen\Generators\Formatter\NextFormatter;
 use Cubetiq\Litegen\Generators\ModelGeneratorInterface;
 use Illuminate\Console\Command;
 
