@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ResController extends Controller
+class {{\Illuminate\Support\Str::studly($class)}}Controller extends Controller
 {
     /**
      * Display a listing of the resource.
