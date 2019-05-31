@@ -10,7 +10,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\{{$name}};
 
-class {{$name}}Controller extends Controller
+class {{$Classes}}Controller extends Controller
 {
 @if($config['index'] ?? false)
 

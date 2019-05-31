@@ -14,8 +14,7 @@ class SimpleResourceGenerator extends BaseGeneratorRepository implements Resourc
 
     protected function getTargetPath()
     {
-//        $output=Str
-//        return
+
     }
 
     protected function getContent()

@@ -1,7 +1,7 @@
 use Illuminate\Support\Facades\Route;
     @foreach ($configs as $table=>$config)
     @php
-        $name=\Illuminate\Support\Str::lower(\Illuminate\Support\Str::studly(\Illuminate\Support\Str::singular($table)));
+        $name=\Illuminate\Support\Str::lower(\Illuminate\Support\Str::studly(\Illuminate\Support\Str::plural($table)));
     @endphp
 
     Route::group(["as"=>"{{$name}}.","prefix"=>"{{$name}}"],function (){

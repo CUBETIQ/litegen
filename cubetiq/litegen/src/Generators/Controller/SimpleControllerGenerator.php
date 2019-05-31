@@ -47,7 +47,7 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
     }
 
     private function config_for_controller(){
-        $output=$this->table_name."Controller.php";
+        $output=Str::plural($this->table_name)."Controller.php";
         $content="<?php".PHP_EOL.view('litegen::generator.controllers.controller_rest',[
                 "class"=>$this->table_name,
                 "config"=>$this->table_action
