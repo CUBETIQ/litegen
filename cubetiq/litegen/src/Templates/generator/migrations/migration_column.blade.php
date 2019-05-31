@@ -1,12 +1,12 @@
 <?php
     use Cubetiq\Litegen\Definitions\MigrationType;
-    use Cubetiq\Litegen\Helper;
+    use Cubetiq\Litegen\Support\Helper;
 ?>
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Create{{\Illuminate\Support\Str::studly($class)}}Table extends Migration
+class Create{{\Illuminate\Support\Str::studly(\Cubetiq\Litegen\Support\Helper::db_tname_format($class))}}Table extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class Create{{\Illuminate\Support\Str::studly($class)}}Table extends Migration
      */
     public function up()
     {
-        Schema::create('{{\Illuminate\Support\Str::snake($class)}}', function (Blueprint $table) {
+        Schema::create('{{\Cubetiq\Litegen\Support\Helper::db_tname_format($class)}}', function (Blueprint $table) {
             $table->bigIncrements('id');
 
 @php
@@ -50,6 +50,6 @@ class Create{{\Illuminate\Support\Str::studly($class)}}Table extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('{{\Illuminate\Support\Str::snake($class)}}');
+        Schema::dropIfExists('{{\Illuminate\Support\Str::snake(\Illuminate\Support\Str::plural($class))}}');
     }
 }

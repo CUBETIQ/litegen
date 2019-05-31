@@ -7,6 +7,7 @@ namespace Cubetiq\Litegen\Generators\View;
 use Cubetiq\Litegen\Base\BaseGeneratorRepository;
 use Cubetiq\Litegen\Configuration;
 use Cubetiq\Litegen\Generators\ViewGeneratorInterface;
+use Cubetiq\Litegen\Support\Helper;
 use Illuminate\Support\Str;
 
 class SimpleViewGenerator extends BaseGeneratorRepository implements ViewGeneratorInterface
@@ -29,7 +30,7 @@ class SimpleViewGenerator extends BaseGeneratorRepository implements ViewGenerat
         $this->table_actions = $controllers['actions'];
 
         foreach ($this->table_actions as $table => $config) {
-            $this->table_name = $table;
+            $this->table_name = Helper::studly_singular($table);
             $this->table_action = $config;
 
             // View
@@ -61,7 +62,7 @@ class SimpleViewGenerator extends BaseGeneratorRepository implements ViewGenerat
             "class" => $this->table_name,
             "config" => $this->table_action
         ]);
-        $table = Str::studly($this->table_name);
+        $table = $this->table_name;
         return [
             "output" => Configuration::get_project_path() . "/resources/views/$table/$output",
             "content" => $content

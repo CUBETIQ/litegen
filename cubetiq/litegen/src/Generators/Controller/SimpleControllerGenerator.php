@@ -9,6 +9,7 @@ use Cubetiq\Litegen\Base\traits\OutputConsole;
 use Cubetiq\Litegen\Base\traits\SubProjectContoller;
 use Cubetiq\Litegen\Configuration;
 use Cubetiq\Litegen\Generators\ControllerGeneratorInterface;
+use Cubetiq\Litegen\Support\Helper;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 
@@ -32,8 +33,9 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
 
         $this->table_actions=$controllers['actions'];
 
+
         foreach ($this->table_actions as $table=>$config){
-            $this->table_name=$table;
+            $this->table_name=Helper::studly_singular($table);
             $this->table_action=$config;
 
             // Controller
@@ -45,7 +47,7 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
     }
 
     private function config_for_controller(){
-        $output=Str::studly($this->table_name)."Controller.php";
+        $output=$this->table_name."Controller.php";
         $content="<?php".PHP_EOL.view('litegen::generator.controllers.controller_rest',[
                 "class"=>$this->table_name,
                 "config"=>$this->table_action

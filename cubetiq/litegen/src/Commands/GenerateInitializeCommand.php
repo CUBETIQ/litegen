@@ -57,7 +57,6 @@ class GenerateInitializeCommand extends BaseCommand
      */
     public function handle()
     {
-        dd($this->options());
         Configuration::setProjectname($this->option('name'));
         Configuration::set_store_path($this->option('path') );
 
@@ -74,7 +73,7 @@ class GenerateInitializeCommand extends BaseCommand
         if(!$this->files->exists($project_path)){
             $this->info("Project not exist ! creating  ...");
             $process=$this->processCommand("cd ".$project_store_path." && composer create-project --no-install --no-scripts --prefer-dist laravel/laravel $project_name");
-            return 1;
+
         }
 
         // command vendor publish , composer ...

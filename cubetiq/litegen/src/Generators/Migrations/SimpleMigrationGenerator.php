@@ -9,7 +9,9 @@ use Cubetiq\Litegen\Configuration;
 use Cubetiq\Litegen\Generators\FormatterInterface;
 use Cubetiq\Litegen\Generators\MigrationGeneratorInterface;
 use Carbon\Carbon;
+use Cubetiq\Litegen\Support\Helper;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
 
 class SimpleMigrationGenerator extends BaseGeneratorRepository implements MigrationGeneratorInterface
 {
@@ -26,11 +28,15 @@ class SimpleMigrationGenerator extends BaseGeneratorRepository implements Migrat
         if ($this->current === 'create') {
             return Configuration::get_project_path()
                 . "/database/migrations/" . Carbon::now()->format('Y_m_d_Hisu')
-                . "_".$this->current."_$this->table_name" . "_table.php";
+                . "_".$this->current."_".Str::lower(Str::plural($this->table_name)) . "_table.php";
         } else {
             return Configuration::get_project_path()
                 . "/database/migrations/" . Carbon::now()->format('Y_m_d_Hisu')
-                . "_".$this->current."_". $this->table_config['from']['table']."_".$this->table_config['to']['table']  . "_relationship.php";
+                . "_".$this->current."_".
+                Str::pluralStudly($this->table_config['from']['table']).
+                "_".
+                Str::pluralStudly($this->table_config['to']['table'] ) .
+                "_relationship.php";
         }
 
     }
@@ -38,7 +44,7 @@ class SimpleMigrationGenerator extends BaseGeneratorRepository implements Migrat
     public function parse()
     {
         $this->files->deleteDirectory(Configuration::get_project_path() . "/database/migrations");
-        $configs = Configuration::get_migration_configData();
+        $configs = Configuration::get_migration_configData()['tables'];
 //        $configs=$this->formatter->format_for_migration($configs);
         $this->process_all($configs);
     }
@@ -79,7 +85,7 @@ class SimpleMigrationGenerator extends BaseGeneratorRepository implements Migrat
 
     private function process_column($table_name, $config)
     {
-        $this->table_name = $table_name;
+        $this->table_name = Helper::studly_singular($table_name);
         $this->table_config = $config;
         $this->generate();
     }

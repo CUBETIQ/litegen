@@ -9,6 +9,7 @@ use Cubetiq\Litegen\Configuration;
 use Cubetiq\Litegen\Definitions\ModelType;
 use Cubetiq\Litegen\Generators\FormatterInterface;
 use Cubetiq\Litegen\Generators\ModelGeneratorInterface;
+use Cubetiq\Litegen\Support\Helper;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -25,9 +26,9 @@ class SimpleModelGenerator extends BaseGeneratorRepository implements ModelGener
 
     public function parse()
     {
-        $configs = Configuration::get_model_configData();
+        $configs = Configuration::get_model_configData()['tables'];
         foreach ($configs as $table => $config) {
-            $this->table_name = $table;
+            $this->table_name = Helper::studly_singular($table);
             $this->table_config = $config;
             $this->generate();
         }
@@ -36,7 +37,7 @@ class SimpleModelGenerator extends BaseGeneratorRepository implements ModelGener
     protected function getTargetPath()
     {
         $project_path = Configuration::get_project_path();
-        $target = $project_path . "/app/Models/" . Str::studly($this->table_name) . ".php";
+        $target = $project_path . "/app/Models/" . $this->table_name . ".php";
         return $target;
     }
 
