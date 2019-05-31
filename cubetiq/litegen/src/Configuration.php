@@ -87,4 +87,12 @@ class Configuration
     public static function get_migration_configData(){
         return self::getFormatter()->format_for_migration(self::getConfigData());
     }
+
+    public static function get_view_configData(){
+        return self::getFormatter()->format_for_view(self::getConfigData());
+    }
+
+    public static function get_route_configData(){
+        return self::getFormatter()->format_for_route(self::getConfigData());
+    }
 }

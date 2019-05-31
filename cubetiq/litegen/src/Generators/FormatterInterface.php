@@ -30,4 +30,20 @@ namespace Cubetiq\Litegen\Generators;
       */
     public  function format_for_controller($data);
 
+     /**
+      * Format Given data to View Format
+      *
+      * @param $data
+      * @return mixed
+      */
+    public function format_for_view($data);
+
+     /**
+      * Format Given data to View Format
+      *
+      * @param $data
+      * @return mixed
+      */
+    public function format_for_route($data);
+
 }

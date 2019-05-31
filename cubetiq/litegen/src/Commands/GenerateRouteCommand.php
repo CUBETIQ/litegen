@@ -6,12 +6,11 @@ namespace Cubetiq\Litegen\Commands;
 
 use Cubetiq\Litegen\Base\traits\SubProjectContoller;
 use Cubetiq\Litegen\Configuration;
-use Cubetiq\Litegen\Generators\ControllerGeneratorInterface;
-use Cubetiq\Litegen\Generators\ModelGeneratorInterface;
+use Cubetiq\Litegen\Generators\RouteGeneratorInterface;
+use Cubetiq\Litegen\Generators\ViewGeneratorInterface;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 
-class GenerateControllerCommand extends Command
+class GenerateRouteCommand extends Command
 {
     use SubProjectContoller;
     /**
@@ -19,7 +18,7 @@ class GenerateControllerCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'litegen:controller 
+    protected $signature = 'litegen:route 
     {--N|name= : Project Name (Default Current Project)}
     {--P|path= : Project Path (Default Current Path)}
     ';
@@ -29,20 +28,20 @@ class GenerateControllerCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Generate Controller';
+    protected $description = 'Generate Model';
 
     /**
-     * @var ModelGeneratorInterface
+     * @var RouteGeneratorInterface
      */
-    private $controller;
+    private $route;
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(ControllerGeneratorInterface $ctr)
+    public function __construct(RouteGeneratorInterface $v)
     {
-        $this->controller=$ctr;
+        $this->route=$v;
         parent::__construct();
     }
 
@@ -61,11 +60,6 @@ class GenerateControllerCommand extends Command
             throw new \Exception("Project is not exist");
         }
 
-        // Route
-        Artisan::call('litegen:route');
-        // View
-        Artisan::call('litegen:view');
-
-        $this->controller->parse();        //
+        $this->route->parse();        //
     }
 }
