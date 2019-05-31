@@ -1,14 +1,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-class {{\Illuminate\Support\Str::studly($class)}} extends Model
-{
 @php
+$table_format_name=\Cubetiq\Litegen\Support\Helper::db_tname_format($class);
+        @endphp
 
-@endphp
+class {{\Cubetiq\Litegen\Support\Helper::studly_singular($class)}} extends Model
+{
+
     //
-    protected $table="{{\Illuminate\Support\Str::snake($class)}}";
+    protected $table="{{\Illuminate\Support\Str::snake($table_format_name)}}";
 
     protected $fillable=[{!!  sizeof(array_keys($columns))?"\"".implode("\",\"",array_keys($columns))."\"":"" !!}];
 
@@ -18,13 +19,13 @@ class {{\Illuminate\Support\Str::studly($class)}} extends Model
     {
         @if($config['type']==\Cubetiq\Litegen\Definitions\ModelType::HAS_MANY)
 
-        return $this->hasMany({{\Illuminate\Support\Str::studly($config['table'])}}::class,'{{$config['column']}}');
+        return $this->hasMany({{\Cubetiq\Litegen\Support\Helper::studly_singular($config['table'])}}::class,'{{$config['column']}}');
         @elseif($config['type']==\Cubetiq\Litegen\Definitions\ModelType::HAS_ONE)
 
-        return $this->hasOne({{\Illuminate\Support\Str::studly($config['table'])}}::class,'{{$config['column']}}');
+        return $this->hasOne({{\Cubetiq\Litegen\Support\Helper::studly_singular($config['table'])}}::class,'{{$config['column']}}');
         @elseif($config['type']==\Cubetiq\Litegen\Definitions\ModelType::BELONGS_TO)
 
-        return $this->BelongsTo({{\Illuminate\Support\Str::studly($config['table'])}}::class,'{{$config['column']}}');
+        return $this->BelongsTo({{\Cubetiq\Litegen\Support\Helper::studly_singular($config['table'])}}::class,'{{$config['column']}}');
         @endif
 
     }
