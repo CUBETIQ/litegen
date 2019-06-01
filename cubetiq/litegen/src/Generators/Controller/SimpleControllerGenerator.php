@@ -43,7 +43,29 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
             $output=$temp['output'];
             $content=$temp['content'];
             $this->generate($output,$content);
+
+            // Request
+            $this->generate_for_requests();
+
+            // Repository
+            $this->generate_for_repository();
         }
+    }
+
+    private function generate_for_repository(){
+
+    }
+
+    private function  generate_for_requests(){
+        $temp=$this->config_for_store_request();
+        $output=$temp['output'];
+        $content=$temp['content'];
+        $this->generate($output,$content);
+
+        $temp=$this->config_for_update_request();
+        $output=$temp['output'];
+        $content=$temp['content'];
+        $this->generate($output,$content);
     }
 
     private function config_for_controller(){
@@ -59,9 +81,57 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
     }
 
 
+    private function config_for_store_request(){
+        $output=$this->table_name."StoreRequest.php";
+        $content="<?php".PHP_EOL.view('litegen::generator.requests.store',[
+                "class"=>$this->table_name,
+                "config"=>$this->table_action
+            ]);
+        return [
+            "output"=>Configuration::get_project_path()."/app/Http/Requests/$this->table_name/$output",
+            "content"=>$content
+        ];
+    }
+
+    private function config_for_update_request(){
+        $output=$this->table_name."UpdateRequest.php";
+        $content="<?php".PHP_EOL.view('litegen::generator.requests.update',[
+                "class"=>$this->table_name,
+                "config"=>$this->table_action
+            ]);
+        return [
+            "output"=>Configuration::get_project_path()."/app/Http/Requests/$this->table_name/$output",
+            "content"=>$content
+        ];
+    }
+
+    private function config_for_repository(){
+        $output=$this->table_name."Repository.php";
+        $content="<?php".PHP_EOL.view('litegen::generator.repository.repository',[
+                "class"=>$this->table_name,
+                "config"=>$this->table_action
+            ]);
+        return [
+            "output"=>$output,
+            "content"=>$content
+        ];
+    }
+
+    private function config_for_interface(){
+        $output=$this->table_name."Interface.php";
+        $content="<?php".PHP_EOL.view('litegen::generator.repository.interface',[
+                "class"=>$this->table_name,
+                "config"=>$this->table_action
+            ]);
+        ConsoleIn
+        return [
+            "output"=>$output,
+            "content"=>$content
+        ];
+    }
 
     private function config_for_resource(){
-        $output=Str::studly($this->table_name)."Controller.php";
+        $output=$this->table_name."Controller.php";
         $content="<?php".PHP_EOL.view('litegen::generator.controllers.controller_rest',[
                 "class"=>$this->table_name,
                 "config"=>$this->table_action

@@ -8,6 +8,7 @@ use Cubetiq\Litegen\Base\traits\SubProjectContoller;
 use Cubetiq\Litegen\Configuration;
 use Cubetiq\Litegen\Generators\ResourceGeneratorInterface;
 use Cubetiq\Litegen\Generators\ViewGeneratorInterface;
+use Dotenv\Dotenv;
 use Illuminate\Console\Command;
 
 class GenerateResourceCommand extends Command

@@ -82,6 +82,9 @@ class GenerateInitializeCommand extends BaseCommand
 
         $this->files->put($project_path."/.env",view('litegen::env')->render());
 
+        $this->files->put($project_path."/config/app.php",$this->files->get());
+
+
         $this->info("finish Initialize");
 
         return 0;
