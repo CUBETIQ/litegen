@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
     @php
         $name=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::plural($table));
     @endphp
+
 use App\Repository\{{\Illuminate\Support\Str::singular($name)}}\{{$name}}Repository;
 use App\Repository\{{\Illuminate\Support\Str::singular($name)}}\{{$name}}Interface;
 @endforeach

@@ -3,7 +3,7 @@
     $class=\Illuminate\Support\Str::singular(\Illuminate\Support\Str::lower($name));
     $Class=\Illuminate\Support\Str::singular(\Illuminate\Support\Str::ucfirst($name));
 
-    $classes=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::lower(\Illuminate\Support\Str::plural($name)));
+    $classes=\Illuminate\Support\Str::lower(\Illuminate\Support\Str::plural($name));
     $Classes=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::ucfirst(\Illuminate\Support\Str::plural($name)));
 
 @endphp
@@ -49,7 +49,6 @@ class {{$Classes}}Controller extends Controller
     public function create()
     {
     //
-        return $this->{{$class}}_repo->findfirst(1);
         return view('{{$Class}}.create');
     }
 
@@ -62,9 +61,10 @@ class {{$Classes}}Controller extends Controller
     public function store(Request $request)
     {
     //
+
     }
 @endif
-@if($config['update'] ?? false)
+@if($config['edit'] ?? false)
 
     /**
     * Show the form for editing the specified resource.
@@ -75,6 +75,11 @@ class {{$Classes}}Controller extends Controller
     public function edit($id)
     {
     //
+        $item=$this->{{$class}}_repo->findfirst($id);
+        return view('{{$Class}}.edit',[
+                "item"=>$item
+            ]
+        );
     }
 
     /**

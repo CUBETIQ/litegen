@@ -85,7 +85,7 @@ class GenerateInitializeCommand extends BaseCommand
 
         $this->files->put($project_path."/.env",view('litegen::env')->render());
 
-        $this->files->put($project_path."/config/app.php",$this->files->get(Configuration::getAssetPath('config/app.php')));
+//        $this->files->put($project_path."/config/app.php",$this->files->get(Configuration::getAssetPath('config/app.php')));
 
 //        $this->files->copy(Configuration::getAssetPath('Providers/RepositoryInterfaceProvider.php'),$project_path."/app/Providers/RepositoryInterfaceProvider.php");
 
