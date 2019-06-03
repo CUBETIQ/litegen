@@ -94,12 +94,12 @@ class SimpleMigrationGenerator extends BaseGeneratorRepository implements Migrat
     protected function getContent()
     {
         if ($this->current === 'create') {
-            $result = "<?php" . PHP_EOL . view('litegen::generator.migrations.migration_column', [
+            $result = "<?php" . PHP_EOL . view('litegen::generator.migrations.simple.migration_column', [
                     "config" => $this->table_config,
                     "class" => $this->table_name
                 ])->render();
         } else {
-            $result = "<?php" . PHP_EOL . view('litegen::generator.migrations.migration_relationship', [
+            $result = "<?php" . PHP_EOL . view('litegen::generator.migrations.simple.migration_relationship', [
                     "config" => $this->table_config,
                     "class" => $this->table_name
                 ])->render();

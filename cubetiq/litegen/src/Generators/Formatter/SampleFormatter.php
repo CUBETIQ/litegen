@@ -21,7 +21,7 @@ class SampleFormatter implements FormatterInterface
 
     public function format_for_migration($data)
     {
-        return config('sample_migration');
+        return config('sample_model_resource');
     }
     public function format_for_resource($data)
     {
