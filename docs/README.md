@@ -16,6 +16,7 @@ $ composer install
 ```
 
 > config/app.php
+
 ```php
 'providers' => [
         ...
