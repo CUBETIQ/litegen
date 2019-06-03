@@ -29,12 +29,6 @@ class Alter{{$Classes.$Foreigns}}Relationship extends Migration
                     ->onDelete('cascade');
             });
 
-{{--        @elseif($config['type']===\Cubetiq\Litegen\Definitions\ModelType::HAS_MANY)--}}
-{{--            Schema::table("{{$classes}}",function (Blueprint $table){--}}
-{{--                $table->unsignedBigInteger('{{$config['foreign']}}')->nullable();--}}
-{{--                $table->foreign('{{$config['foreign']}}')->references('{{$config['column']}}')->on('{{$foreigns}}')--}}
-{{--                ->onDelete('cascade');--}}
-{{--            });--}}
         @endif
 
     }

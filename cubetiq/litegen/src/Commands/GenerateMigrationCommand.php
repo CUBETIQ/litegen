@@ -51,6 +51,8 @@ class GenerateMigrationCommand extends Command
     {
         Configuration::setProjectname($this->option('name'));
         Configuration::set_store_path($this->option('path'));
+
+        // If u use SampleFormatter , it no use here
         Configuration::setConfigData(config('sample_migration'));
 
         if (!$this->isProjectExist()) {

@@ -56,7 +56,7 @@ class SimpleModelGenerator extends BaseGeneratorRepository implements ModelGener
             }
         });
 
-        return "<?php" . PHP_EOL . view('litegen::generator.models.model_template', [
+        return "<?php" . PHP_EOL . view('litegen::generator.models.simple.model_template', [
                 "class" => $this->table_name,
                 "columns" => $columns,
                 "relationships" => $relationships
