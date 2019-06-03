@@ -1,4 +1,4 @@
-
+<?php
 
 namespace Cubetiq\Litegen\Assets\provider;
 
