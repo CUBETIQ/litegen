@@ -1,9 +1,10 @@
-# Installation
+# Lite Generator Package
+
+## Installation
 
 > composer.json
 
 ```json
-
 "autoload": {
         ...
         "psr-4": {
@@ -12,13 +13,10 @@
         },
         ...
     },
-
 ```
 
 ```sh
-
 $ composer install
-
 ```
 
 > config/app.php
