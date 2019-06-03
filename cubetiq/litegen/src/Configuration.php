@@ -27,6 +27,14 @@ class Configuration
         return self::getFormatter();
     }
 
+    public static function getAssetPath($name=null){
+        $reflector = new \ReflectionClass(Configuration::class);
+        $filepath=explode(DIRECTORY_SEPARATOR,$reflector->getFileName());
+        array_pop($filepath);
+        array_push($filepath,"Assets");
+        return implode(DIRECTORY_SEPARATOR,$filepath).DIRECTORY_SEPARATOR.$name;
+    }
+
     public static function getProjectname()
     {
         if (self::$project_name) {

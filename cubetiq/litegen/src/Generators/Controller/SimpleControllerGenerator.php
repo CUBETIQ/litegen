@@ -123,7 +123,6 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
                 "class"=>$this->table_name,
                 "config"=>$this->table_action
             ]);
-        ConsoleIn
         return [
             "output"=>$output,
             "content"=>$content

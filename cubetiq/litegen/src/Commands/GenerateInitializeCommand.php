@@ -7,6 +7,7 @@ namespace Cubetiq\Litegen\Commands;
 use Cubetiq\Litegen\Base\BaseCommand;
 use Cubetiq\Litegen\Base\traits\StubGeneratorTrait;
 use Cubetiq\Litegen\Configuration;
+use Cubetiq\Litegen\Definitions\ModelType;
 use Cubetiq\Litegen\Generators\MigrationGeneratorInterface;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -57,6 +58,8 @@ class GenerateInitializeCommand extends BaseCommand
      */
     public function handle()
     {
+//        dd($this->files->get(Configuration::getAssetPath('config/app.php')));
+
         Configuration::setProjectname($this->option('name'));
         Configuration::set_store_path($this->option('path') );
 
@@ -82,8 +85,11 @@ class GenerateInitializeCommand extends BaseCommand
 
         $this->files->put($project_path."/.env",view('litegen::env')->render());
 
-        $this->files->put($project_path."/config/app.php",$this->files->get());
+        $this->files->put($project_path."/config/app.php",$this->files->get(Configuration::getAssetPath('config/app.php')));
 
+        $this->files->copy(Configuration::getAssetPath('Providers/RepositoryInterfaceProvider.php'),$project_path."/app/Providers/RepositoryInterfaceProvider.php");
+
+        $this->files->copyDirectory(Configuration::getAssetPath('Base'),$project_path."/app/");
 
         $this->info("finish Initialize");
 
