@@ -54,7 +54,7 @@ class GenerateModelCommand extends Command
     {
         Configuration::setProjectname($this->option('name'));
         Configuration::set_store_path($this->option('path'));
-        Configuration::setConfigData(config('sample_model'));
+        Configuration::setConfigData(config('sample_model_migration'));
 
         if (!$this->isProjectExist()) {
             throw new \Exception("Project is not exist");

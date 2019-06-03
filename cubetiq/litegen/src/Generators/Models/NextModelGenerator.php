@@ -24,8 +24,8 @@ class NextModelGenerator extends BaseGeneratorRepository implements ModelGenerat
 
     public function parse()
     {
-        $data=Configuration::get_model_configData();
-        foreach ($data as $table=>$columns){
+        $configs=Configuration::get_model_configData();
+        foreach ($configs['data'] as $table=>$columns){
             $this->table_name=Str::singular(Str::studly($table));
             $this->table_columns=$columns;
             $this->generate();

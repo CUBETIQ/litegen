@@ -34,10 +34,10 @@ class NextMigrationGenerator extends BaseGeneratorRepository implements Migratio
     {
         $this->files->deleteDirectory(Configuration::get_project_path() . "/database/migrations");
 
-        $data = Configuration::get_migration_configData();
+        $configs = Configuration::get_migration_configData();
 
         // Columns
-        foreach ($data as $table => $columns) {
+        foreach ($configs['data'] as $table => $columns) {
 
             $this->table_name = Str::plural(Str::snake($table));
             $this->table_config = $columns;
@@ -49,7 +49,7 @@ class NextMigrationGenerator extends BaseGeneratorRepository implements Migratio
         }
 
         // Relationship
-        foreach ($data as $table => $columns) {
+        foreach ($configs['data'] as $table => $columns) {
             $outside_column=array_filter($columns,function ($column){
                 return in_array($column['type'],self::RETATIONSHIP_CREATE);
             });
