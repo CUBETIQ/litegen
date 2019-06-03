@@ -4,8 +4,7 @@
 
 > composer.json
 
-```json
-
+``` json
 "autoload": {
         ...
         "psr-4": {
@@ -14,19 +13,15 @@
         },
         ...
     },
-
 ```
 
-```sh
-
+``` sh
 $ composer install
-
 ```
 
 > config/app.php
 
-```php
-
+``` php
 'providers' => [
         ...
         /*
@@ -34,11 +29,8 @@ $ composer install
          */
         \Cubetiq\Litegen\provider\LitegenServiceProvider::class
     ],
-
 ```
 
-```sh
-
+``` sh
 $ php artisan vendor:publish --provider="Cubetiq\Litegen\provider\LitegenServiceProvider"
-
 ```
