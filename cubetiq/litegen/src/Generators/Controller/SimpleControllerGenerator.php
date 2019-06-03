@@ -50,10 +50,44 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
             // Repository
             $this->generate_for_repository();
         }
+
+        $this->generate_provider();
     }
 
     private function generate_for_repository(){
+        $temp=$this->config_for_repository();
+        $output=$temp['output'];
+        $content=$temp['content'];
+        $this->generate($output,$content);
 
+        $temp=$this->config_for_interface();
+        $output=$temp['output'];
+        $content=$temp['content'];
+        $this->generate($output,$content);
+    }
+
+    private function config_for_repository(){
+        $output=Str::plural($this->table_name)."Repository.php";
+        $content="<?php".PHP_EOL.view('litegen::generator.repository.repository',[
+                "class"=>$this->table_name,
+                "config"=>$this->table_action
+            ]);
+        return [
+            "output"=>Configuration::get_project_path()."/app/Http/Repository/$this->table_name/$output",
+            "content"=>$content
+        ];
+    }
+
+    private function config_for_interface(){
+        $output=Str::plural($this->table_name)."Interface.php";
+        $content="<?php".PHP_EOL.view('litegen::generator.repository.interface',[
+                "class"=>$this->table_name,
+                "config"=>$this->table_action
+            ]);
+        return [
+            "output"=>Configuration::get_project_path()."/app/Http/Repository/$this->table_name/$output",
+            "content"=>$content
+        ];
     }
 
     private function  generate_for_requests(){
@@ -105,29 +139,6 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
         ];
     }
 
-    private function config_for_repository(){
-        $output=$this->table_name."Repository.php";
-        $content="<?php".PHP_EOL.view('litegen::generator.repository.repository',[
-                "class"=>$this->table_name,
-                "config"=>$this->table_action
-            ]);
-        return [
-            "output"=>$output,
-            "content"=>$content
-        ];
-    }
-
-    private function config_for_interface(){
-        $output=$this->table_name."Interface.php";
-        $content="<?php".PHP_EOL.view('litegen::generator.repository.interface',[
-                "class"=>$this->table_name,
-                "config"=>$this->table_action
-            ]);
-        return [
-            "output"=>$output,
-            "content"=>$content
-        ];
-    }
 
     private function config_for_resource(){
         $output=$this->table_name."Controller.php";
@@ -141,5 +152,13 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
         ];
     }
 
+    private function generate_provider(){
+        $tables=array_keys($this->table_actions);
+        $content="<?php".PHP_EOL.view('litegen::generator.repository.provider',[
+                "tables"=>$tables,
+            ])->render();
+        $path=Configuration::get_project_path()."/app/Providers/RepositoryInterfaceProvider.php";
+        $this->generate($path,$content);
+    }
 
 }

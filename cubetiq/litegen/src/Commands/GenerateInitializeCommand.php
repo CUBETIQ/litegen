@@ -87,9 +87,9 @@ class GenerateInitializeCommand extends BaseCommand
 
         $this->files->put($project_path."/config/app.php",$this->files->get(Configuration::getAssetPath('config/app.php')));
 
-        $this->files->copy(Configuration::getAssetPath('Providers/RepositoryInterfaceProvider.php'),$project_path."/app/Providers/RepositoryInterfaceProvider.php");
+//        $this->files->copy(Configuration::getAssetPath('Providers/RepositoryInterfaceProvider.php'),$project_path."/app/Providers/RepositoryInterfaceProvider.php");
 
-        $this->files->copyDirectory(Configuration::getAssetPath('Base'),$project_path."/app/");
+        $this->files->copyDirectory(Configuration::getAssetPath('/Base'),$project_path."/app/Base");
 
         $this->info("finish Initialize");
 

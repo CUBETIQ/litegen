@@ -179,11 +179,6 @@ return [
          * Lite Generator Provider
          */
         \Cubetiq\Litegen\provider\LitegenServiceProvider::class,
-
-        /**
-         * Repository Interface Provider
-         */
-        \App\Providers\RepositoryInterfaceProvider::class,
     ],
 
     /*

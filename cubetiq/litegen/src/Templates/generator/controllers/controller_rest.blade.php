@@ -2,16 +2,26 @@
     $name=\Illuminate\Support\Str::studly($class);
     $class=\Illuminate\Support\Str::singular(\Illuminate\Support\Str::lower($name));
     $Class=\Illuminate\Support\Str::singular(\Illuminate\Support\Str::ucfirst($name));
-    $classes=\Illuminate\Support\Str::plural($class);
-    $Classes=\Illuminate\Support\Str::plural($class);
+
+    $classes=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::lower(\Illuminate\Support\Str::plural($name)));
+    $Classes=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::ucfirst(\Illuminate\Support\Str::plural($name)));
+
 @endphp
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\{{$name}};
+use App\Repository\{{$Class}}\{{$Classes}}Interface;
 
 class {{$Classes}}Controller extends Controller
 {
+
+    private ${{$class}}_repo;
+
+    public function __construct({{$Classes}}Interface $repo){
+        $this->{{$class}}_repo=$repo;
+    }
+
 @if($config['index'] ?? false)
 
     /**
@@ -39,6 +49,8 @@ class {{$Classes}}Controller extends Controller
     public function create()
     {
     //
+        return $this->{{$class}}_repo->findfirst(1);
+        return view('{{$Class}}.create');
     }
 
     /**

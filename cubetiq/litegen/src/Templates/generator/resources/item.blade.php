@@ -21,7 +21,6 @@ class {{$class}}Resource extends JsonResource
 
             @foreach($columns as $column)
 
-                '{!! json_encode($resource[$column]) !!}',
                 "{{$column}}"=>$this->{{$column}},
 
             @endforeach
