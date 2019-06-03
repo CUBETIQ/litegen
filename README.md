@@ -1,7 +1,9 @@
 # Lite Generator Package
 
 ## Installation
-> composer.json 
+
+> composer.json
+
 ```json
 "autoload": {
         ...
@@ -18,7 +20,9 @@ $ composer install
 ```
 
 > config/app.php
+
 ```php
+
 'providers' => [
         ...
         /*
@@ -30,5 +34,7 @@ $ composer install
 ```
 
 ```sh
+
 $ php artisan vendor:publish --provider="Cubetiq\Litegen\provider\LitegenServiceProvider"
+
 ```
