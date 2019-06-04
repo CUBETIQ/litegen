@@ -16,25 +16,25 @@ class {{$Class}} extends BaseModel
     @foreach($relationships as $column_name=>$config)
 
 
-        @if($config['type']==\Cubetiq\Litegen\Definitions\ModelType::HAS_MANY)
+        @if($config['type']==\Cubetiq\Litegen\Definitions\RelationshipType::HAS_MANY)
 
         public function {{\Illuminate\Support\Str::studly(\Illuminate\Support\Str::plural($config['table']))}}()
         {
             return $this->hasMany({{\Cubetiq\Litegen\Support\Helper::studly_singular($config['table'])}}::class,'{{$config['column']}}');
         }
-        @elseif($config['type']==\Cubetiq\Litegen\Definitions\ModelType::HAS_ONE)
+        @elseif($config['type']==\Cubetiq\Litegen\Definitions\RelationshipType::HAS_ONE)
 
         public function {{\Illuminate\Support\Str::studly(\Illuminate\Support\Str::singular($config['table']))}}()
         {
             return $this->hasOne({{\Cubetiq\Litegen\Support\Helper::studly_singular($config['table'])}}::class,'{{$config['foreign']}}');
         }
-        @elseif($config['type']==\Cubetiq\Litegen\Definitions\ModelType::BELONGS_TO)
+        @elseif($config['type']==\Cubetiq\Litegen\Definitions\RelationshipType::BELONGS_TO)
 
         public function {{\Illuminate\Support\Str::studly(\Illuminate\Support\Str::singular($config['table']))}}()
         {
             return $this->BelongsTo({{\Cubetiq\Litegen\Support\Helper::studly_singular($config['table'])}}::class,'{{$config['foreign']}}');
         }
-        @elseif($config['type']==\Cubetiq\Litegen\Definitions\ModelType::BELONGSTOMANY)
+        @elseif($config['type']==\Cubetiq\Litegen\Definitions\RelationshipType::BELONGSTOMANY)
 
         public function {{\Illuminate\Support\Str::studly(\Illuminate\Support\Str::plural($config['table']))}}()
         {

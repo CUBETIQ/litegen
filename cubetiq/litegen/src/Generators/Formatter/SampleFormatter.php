@@ -26,8 +26,7 @@ class SampleFormatter implements FormatterInterface
     public function format_for_resource($data)
     {
         $models=Configuration::get_model_configData();
-        $tables=$models['tables'];
-        return $tables;
+        return $models;
     }
 
     public function format_for_route($data)

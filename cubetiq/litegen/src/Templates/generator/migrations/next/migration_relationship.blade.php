@@ -21,7 +21,7 @@ class Alter{{$Classes.$Foreigns}}Relationship extends Migration
     public function up()
     {
         //
-        @if($config['type']===\Cubetiq\Litegen\Definitions\ModelType::BELONGS_TO)
+        @if($config['type']===\Cubetiq\Litegen\Definitions\RelationshipType::BELONGS_TO)
 
             Schema::table("{{$classes}}",function (Blueprint $table){
                 $table->unsignedBigInteger('{{$config['foreign']}}')->nullable();

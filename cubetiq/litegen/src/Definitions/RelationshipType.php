@@ -8,7 +8,8 @@ use Cubetiq\Litegen\Base\BaseTypeAbstract;
 
 class RelationshipType extends BaseTypeAbstract
 {
-    const ONE_TO_ONE="OTO";
-    const ONE_TO_MANY="OTM";
-    const MANY_TO_MANY="MTM";
+    const BELONGS_TO="belongsto";
+    const HAS_ONE="hasone";
+    const HAS_MANY="hasmany";
+    const BELONGSTOMANY="belongstomany";
 }

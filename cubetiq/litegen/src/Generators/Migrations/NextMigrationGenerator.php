@@ -7,6 +7,7 @@ namespace Cubetiq\Litegen\Generators\Migrations;
 use Cubetiq\Litegen\Base\BaseGeneratorRepository;
 use Cubetiq\Litegen\Configuration;
 use Cubetiq\Litegen\Definitions\ModelType;
+use Cubetiq\Litegen\Definitions\RelationshipType;
 use Cubetiq\Litegen\Generators\MigrationGeneratorInterface;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Carbon;
@@ -15,7 +16,7 @@ use Illuminate\Support\Str;
 class NextMigrationGenerator extends BaseGeneratorRepository implements MigrationGeneratorInterface
 {
     const RETATIONSHIP_CREATE = [
-        ModelType::BELONGS_TO
+        RelationshipType::BELONGS_TO
     ];
 
     private $table_name;
