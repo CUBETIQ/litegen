@@ -24,6 +24,7 @@ class GenerateControllerCommand extends Command
     {--P|path= : Project Path (Default Current Path)}
     {--R|route : Generate with route}
     {--I|view : Generate with view)}
+    {--E|resource : Generate with resource)}
 
     
     ';
@@ -72,6 +73,12 @@ class GenerateControllerCommand extends Command
             $this->info('run view');
             Artisan::call('litegen:view');
         }
+
+        if ($this->option('resource')){
+            $this->info('run resource');
+            Artisan::call('litegen:resource');
+        }
+
 
         // Controller Generate from here
         Configuration::setConfigData(config('sample_controller'));

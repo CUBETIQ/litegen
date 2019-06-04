@@ -54,3 +54,5 @@ On Generated project
         \App\Providers\RepositoryInterfaceProvider::class
     ],
 ```
+
+

@@ -11,7 +11,14 @@ class SampleFormatter implements FormatterInterface
 {
     public function format_for_model($data)
     {
-        return config('sample_model_migration');
+        $data= config('sample_model_migration');
+        foreach ($data['data'] as $table=>$columns){
+            foreach ($columns as $column=>$config){
+                $data['data'][$table][$column]['unique']=$config['unique'] ?? false;
+                $data['data'][$table][$column]['nullable']=$config['nullable'] ?? false;
+            }
+        }
+        return $data;
     }
 
     public function format_for_controller($data)
@@ -21,7 +28,7 @@ class SampleFormatter implements FormatterInterface
 
     public function format_for_migration($data)
     {
-        return config('sample_model_migration');
+        return Configuration::get_model_configData();
     }
     public function format_for_resource($data)
     {
@@ -31,12 +38,12 @@ class SampleFormatter implements FormatterInterface
 
     public function format_for_route($data)
     {
-        return config('sample_controller');
+        return Configuration::get_controllers_data();
     }
 
     public function format_for_view($data)
     {
-        return config('sample_controller');
+        return Configuration::get_controllers_data();
     }
 
 }

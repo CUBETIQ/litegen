@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\{{$name}};
 use App\Repository\{{$Class}}\{{$Classes}}Interface;
+use App\Resources\{{$Class}}\{{$Class}}Resource;
 
 class {{$Classes}}Controller extends Controller
 {
@@ -34,7 +35,7 @@ class {{$Classes}}Controller extends Controller
     //
         ${{$classes}}={{$name}}::all();
         return view('{{$name}}.index',[
-            "{{$classes}}"=>${{$classes}}
+            "{{$classes}}"=>{{$Class}}Resource::collection(${{$classes}})
         ]);
     }
 
