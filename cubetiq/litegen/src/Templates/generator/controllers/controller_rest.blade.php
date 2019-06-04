@@ -1,10 +1,10 @@
 @php
     $name=\Illuminate\Support\Str::studly($class);
     $class=\Illuminate\Support\Str::singular(\Illuminate\Support\Str::lower($name));
-    $Class=\Illuminate\Support\Str::singular(\Illuminate\Support\Str::ucfirst($name));
+    $Class=\Illuminate\Support\Str::singular(\Illuminate\Support\Str::studly($name));
 
     $classes=\Illuminate\Support\Str::lower(\Illuminate\Support\Str::plural($name));
-    $Classes=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::ucfirst(\Illuminate\Support\Str::plural($name)));
+    $Classes=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::plural($name));
 
 @endphp
 namespace App\Http\Controllers;

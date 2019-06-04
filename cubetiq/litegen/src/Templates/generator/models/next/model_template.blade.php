@@ -14,8 +14,6 @@ class {{$Class}} extends BaseModel
     protected $fillable=[{!!  sizeof($fillable)?"\"".implode("\",\"",$fillable)."\"":"" !!}];
 
     @foreach($relationships as $column_name=>$config)
-
-
         @if($config['type']==\Cubetiq\Litegen\Definitions\RelationshipType::HAS_MANY)
 
         public function {{\Illuminate\Support\Str::studly(\Illuminate\Support\Str::plural($config['table']))}}()
@@ -38,10 +36,9 @@ class {{$Class}} extends BaseModel
 
         public function {{\Illuminate\Support\Str::studly(\Illuminate\Support\Str::plural($config['table']))}}()
         {
-            return $this->BelongsTo({{\Cubetiq\Litegen\Support\Helper::studly_singular($config['table'])}}::class,'{{$config['through']['table']}}');
+            return $this->BelongsToMany({{\Cubetiq\Litegen\Support\Helper::studly_singular($config['table'])}}::class,'{{$config['through']['table']}}','{{$config['through']['foreign_from']}}','{{$config['through']['foreign_to'],"id","id"}}');
         }
         @endif
-
 
     @endforeach
 
