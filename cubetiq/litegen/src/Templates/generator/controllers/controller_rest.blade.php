@@ -150,7 +150,7 @@ class {{$Classes}}Controller extends Controller
     {
         $item=$this->{{$class}}_repo->findfirst($id);
         return view('content.{{$Class}}.show',[
-            "item"=>$item
+            "item"=> new {{$Class}}Resource($item)
             ]
         );
     //
