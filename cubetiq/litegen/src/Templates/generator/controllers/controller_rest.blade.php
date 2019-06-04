@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 use App\Models\{{$name}};
 use App\Repository\{{$Class}}\{{$Classes}}Interface;
 use App\Resources\{{$Class}}\{{$Class}}Resource;
+use App\Http\Requests\{{$Class}}StoreRequest;
+use App\Http\Requests\{{$Class}}UpdateRequest;
+
 
 class {{$Classes}}Controller extends Controller
 {
@@ -60,7 +63,7 @@ class {{$Classes}}Controller extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request)
+    public function store({{$Class}}StoreRequest $request)
     {
     //
         $required_data=$request->all(self::FILLABLE);
@@ -98,7 +101,7 @@ class {{$Classes}}Controller extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, $id)
+    public function update({{$Class}}UpdateRequest $request, $id)
     {
     //
     }

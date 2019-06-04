@@ -27,7 +27,7 @@ class {{$class}}UpdateRequest extends FormRequest
     $model_type=$cons->getConstants();
     $table_name=\Illuminate\Support\Str::snake(\Illuminate\Support\Str::plural($class));
 @endphp
-
+        $id=$this->route()->parameter('id');
         return [
     @foreach($columns as $column=>$config)
         @php
@@ -42,6 +42,11 @@ class {{$class}}UpdateRequest extends FormRequest
             if(!$config['nullable']){
                 array_push($options,"required");
             }
+
+            if(!$config['unique']){
+                array_push($options,"unique:$table_name,".$column_name.',$id,id');
+            }
+
         @endphp
 
             "{{$column_name}}"=>"{!! implode("|",$options) !!}",
