@@ -15,6 +15,7 @@ class NextModelGenerator extends BaseGeneratorRepository implements ModelGenerat
 {
     private $table_name;
     private $table_columns;
+    private $origin_name;
 
 //    const RelationshipType=[
 //        ModelType::BELONGS_TO,
@@ -28,6 +29,7 @@ class NextModelGenerator extends BaseGeneratorRepository implements ModelGenerat
         $configs = Configuration::get_model_configData();
         foreach ($configs['data'] as $table => $columns) {
             $this->table_name = Str::singular(Str::studly($table));
+            $this->origin_name=$table;
             $this->table_columns = $columns;
             $this->generate();
         }

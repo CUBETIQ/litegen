@@ -21,6 +21,7 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
     private $table_name;
     private $table_action;
     private $table_actions;
+    private $fillable;
 
     private $model_columns;
 
@@ -42,6 +43,7 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
 
         foreach ($this->table_actions as $table=>$config){
             $this->table_name=Helper::studly_singular($table);
+            $this->fillable=Helper::get_fillable_columns($table);
             $this->table_action=$config;
 
             // Controller
@@ -76,7 +78,7 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
         $content="<?php".PHP_EOL.view('litegen::generator.repository.repository',[
                 "class"=>$this->table_name,
                 "config"=>$this->table_action
-            ]);
+            ])->render();
         return [
             "output"=>Configuration::get_project_path()."/app/Http/Repository/$this->table_name/$output",
             "content"=>$content
@@ -88,7 +90,7 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
         $content="<?php".PHP_EOL.view('litegen::generator.repository.interface',[
                 "class"=>$this->table_name,
                 "config"=>$this->table_action
-            ]);
+            ])->render();
         return [
             "output"=>Configuration::get_project_path()."/app/Http/Repository/$this->table_name/$output",
             "content"=>$content
@@ -117,8 +119,9 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
         $output=Str::plural($this->table_name)."Controller.php";
         $content="<?php".PHP_EOL.view('litegen::generator.controllers.controller_rest',[
                 "class"=>$this->table_name,
-                "config"=>$this->table_action
-            ]);
+                "config"=>$this->table_action,
+                "fillable"=>$this->fillable
+            ])->render();
         return [
             "output"=>Configuration::get_project_path()."/app/Http/Controllers/$output",
             "content"=>$content

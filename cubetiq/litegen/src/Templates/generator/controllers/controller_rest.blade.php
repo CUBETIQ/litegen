@@ -16,6 +16,7 @@ use App\Resources\{{$Class}}\{{$Class}}Resource;
 
 class {{$Classes}}Controller extends Controller
 {
+    const FILLABLE=[{!!  sizeof($fillable)?"\"".implode("\",\"",$fillable)."\"":"" !!}];
 
     private ${{$class}}_repo;
 
@@ -62,7 +63,14 @@ class {{$Classes}}Controller extends Controller
     public function store(Request $request)
     {
     //
+        $required_data=$request->all(self::FILLABLE);
+        $addition_data=[
 
+        ];
+        $full_data=array_merge($required_data,$addition_data);
+        $filtered=array_filter($full_data);
+        $result=$this->{{$class}}_repo->create($filtered);
+        return redirect()->route('{{$classes}}.index');
     }
 @endif
 @if($config['edit'] ?? false)

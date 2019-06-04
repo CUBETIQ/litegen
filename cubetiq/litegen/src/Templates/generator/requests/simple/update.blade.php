@@ -43,6 +43,7 @@ class {{$class}}UpdateRequest extends FormRequest
                 array_push($options,"required");
             }
         @endphp
+
             "{{$column_name}}"=>"{!! implode("|",$options) !!}",
     @endforeach
 
