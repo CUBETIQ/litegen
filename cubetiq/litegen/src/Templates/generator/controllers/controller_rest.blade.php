@@ -38,7 +38,7 @@ class {{$Classes}}Controller extends Controller
     {
     //
         ${{$classes}}={{$name}}::all();
-        return view('{{$name}}.index',[
+        return view('content.{{$name}}.index',[
             "{{$classes}}"=>{{$Class}}Resource::collection(${{$classes}})
         ]);
     }
@@ -54,7 +54,7 @@ class {{$Classes}}Controller extends Controller
     public function create()
     {
     //
-        return view('{{$Class}}.create');
+        return view('content.{{$Class}}.create');
     }
 
     /**
@@ -73,7 +73,12 @@ class {{$Classes}}Controller extends Controller
         $full_data=array_merge($required_data,$addition_data);
         $filtered=array_filter($full_data);
         $result=$this->{{$class}}_repo->create($filtered);
-        return redirect()->route('{{$classes}}.index');
+        if($request->wantsJson()){
+            return response()->json(
+                new {{$Class}}Resource($result)
+            );
+        }
+        return redirect()->route('content.{{$classes}}.index');
     }
 @endif
 @if($config['edit'] ?? false)
@@ -88,7 +93,7 @@ class {{$Classes}}Controller extends Controller
     {
     //
         $item=$this->{{$class}}_repo->findfirst($id);
-        return view('{{$Class}}.edit',[
+        return view('content.{{$Class}}.edit',[
                 "item"=>$item
             ]
         );
@@ -104,6 +109,19 @@ class {{$Classes}}Controller extends Controller
     public function update({{$Class}}UpdateRequest $request, $id)
     {
     //
+        $required_data=$request->all(self::FILLABLE);
+        $addition_data=[
+
+        ];
+        $full_data=array_merge($required_data,$addition_data);
+        $filtered=array_filter($full_data);
+        $result=$this->{{$class}}_repo->update($id,$filtered);
+        if($request->wantsJson()){
+            return response()->json(
+                    new {{$Class}}Resource($result)
+                );
+        }
+        return redirect()->route('content.{{$classes}}.index');
     }
 
 @endif
@@ -130,6 +148,11 @@ class {{$Classes}}Controller extends Controller
     */
     public function show($id)
     {
+        $item=$this->{{$class}}_repo->findfirst($id);
+        return view('content.{{$Class}}.show',[
+            "item"=>$item
+            ]
+        );
     //
     }
 @endif

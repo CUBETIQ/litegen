@@ -64,7 +64,7 @@ class SimpleViewGenerator extends BaseGeneratorRepository implements ViewGenerat
         ]);
         $table = $this->table_name;
         return [
-            "output" => Configuration::get_project_path() . "/resources/views/$table/$output",
+            "output" => Configuration::get_project_path() . "/resources/views/content/$table/$output",
             "content" => $content
         ];
 
