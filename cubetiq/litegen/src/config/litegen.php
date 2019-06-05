@@ -23,7 +23,8 @@ return [
     "formatter" => \Cubetiq\Litegen\Generators\Formatter\SampleFormatter::class,
 
     /*
-     * Template for renderer use to render
+     * Template for renderer use for render template
+     * Use in SimpleViewGenerator
      */
     "views" => [
 //        "index"=>"template::index",
