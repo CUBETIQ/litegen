@@ -14,9 +14,11 @@ class SimpleRouteGenerator extends BaseGeneratorRepository implements RouteGener
     {
         $controllers=Configuration::get_route_configData();
         $table_actions=$controllers['actions'];
+        $view_non_actions=$controllers['non-actions'];
         $content="<?php".PHP_EOL.view('litegen::generator.routes.route_rest',[
-                "configs"=>$table_actions
-            ]);
+                "configs"=>$table_actions,
+                'nons'=>$view_non_actions
+            ])->render();
         return $content;
     }
 
