@@ -82,10 +82,16 @@ class GenerateInitializeCommand extends BaseCommand
         // command vendor publish , composer ...
 
         //
+        $replace["env"]=$this->confirm("Do you want to replace .env ? y / n","n");
+        $replace["app"]=$this->confirm("Do you want to replace config/app ? y / n","n");
+        
+        if($replace['env']=='y'){
+            $this->files->put($project_path."/.env",view('litegen::env')->render());
+        }
 
-        $this->files->put($project_path."/.env",view('litegen::env')->render());
-
-        $this->files->put($project_path."/config/app.php",$this->files->get(Configuration::getAssetPath('config/app.php')));
+        if($replace['app']=='y'){
+            $this->files->put($project_path."/config/app.php",$this->files->get(Configuration::getAssetPath('config/app.php')));
+        }
 
         $this->files->copy(Configuration::getAssetPath('Providers/RepositoryInterfaceProvider.php'),$project_path."/app/Providers/RepositoryInterfaceProvider.php");
 

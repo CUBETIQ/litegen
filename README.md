@@ -45,7 +45,6 @@ $ php artisan vendor:publish --provider="Cubetiq\Litegen\provider\LitegenService
 ## Usage
 
 > Initialize project
->> Note : if you work on current project , do not run this
 
 ``` sh
 $ php artisan litegen:init [--name=projectname] [--path=project path]
