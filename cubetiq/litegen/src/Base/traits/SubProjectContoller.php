@@ -8,6 +8,7 @@ use Cubetiq\Litegen\Configuration;
 
 trait SubProjectContoller
 {
+
 //    private $project_name;
 //
 //    protected function ProjectPath(){

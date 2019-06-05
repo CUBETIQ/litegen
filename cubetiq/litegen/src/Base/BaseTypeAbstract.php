@@ -12,7 +12,7 @@ abstract class BaseTypeAbstract
      * @return array
      * @throws \ReflectionException
      */
-    public  static function getConstants(){
+    public static function getConstants(){
         $con=new \ReflectionClass(get_called_class());
         return $con->getConstants();
     }

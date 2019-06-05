@@ -1,9 +1,31 @@
+{!!"@"."extends('layouts.app')"!!}
+
+
+
+{!!"@"."section('content')"!!}
 <h1>
-    Show    {{\Illuminate\Support\Str::studly($class)}}
+    Show    {!!\Illuminate\Support\Str::studly($class)!!}
 </h1>
 
-{{"@"."php"}}
+{!!"@"."php"!!}
 
 dd($item);
 
-{{"@"."endphp"}}
+{!!"@"."endphp"!!}
+
+{!!"@"."stop"!!}
+
+
+{!!"@"."section('css')"!!}
+<style>
+
+
+</style>
+{!!"@"."stop"!!}
+
+{!!"@"."section('script')"!!}
+
+<script>
+
+</script>
+{!!"@"."stop"!!}

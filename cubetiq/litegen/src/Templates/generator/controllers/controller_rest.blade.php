@@ -37,7 +37,7 @@ class {{$Classes}}Controller extends Controller
     public function index()
     {
     //
-        ${{$classes}}={{$name}}::all();
+        ${{$classes}}=$this->{{$class}}_repo->all();
         return view('content.{{$name}}.index',[
             "{{$classes}}"=>{{$Class}}Resource::collection(${{$classes}})
         ]);

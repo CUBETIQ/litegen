@@ -15,4 +15,8 @@ interface BaseInterface
     public function create($data);
 
     public function update($id, $data, $column = "id", $comparator = "=");
+
+    public function active();
+
+    public function all();
 }

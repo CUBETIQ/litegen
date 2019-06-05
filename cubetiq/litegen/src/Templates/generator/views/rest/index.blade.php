@@ -6,12 +6,33 @@
     $Classes=\Illuminate\Support\Str::plural($class);
 @endphp
 
+{!!"@"."extends('layouts.app')"!!}
+
+{!!"@"."section('content')"!!}
 <h1>
-    List All {{$Classes}}
+    List All {!!$Classes!!}
 </h1>
 
-{{"@"."php"}}
+{!!"@"."php"!!}
 
-        dd(${{$classes}});
+dd(${!!$classes!!});
 
-{{"@"."endphp"}}
+{!!"@"."endphp"!!}
+
+
+{!!"@"."stop"!!}
+
+
+{!!"@"."section('css')"!!}
+<style>
+
+
+</style>
+{!!"@"."stop"!!}
+
+{!!"@"."section('script')"!!}
+
+<script>
+
+</script>
+{!!"@"."stop"!!}
