@@ -22,6 +22,7 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
     private $table_action;
     private $table_actions;
     private $fillable;
+    private $relationships;
 
     private $model_columns;
 
@@ -40,8 +41,16 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
 
         $this->generate_for_requests();
 
+        $models=Configuration::get_model_configData()['data'];
 
         foreach ($this->table_actions as $table=>$config){
+            $this->relationships=array_reduce($models[$table],function ($result,$column){
+                if($column['type']==RelationshipType::BELONGS_TO){
+                    array_push($result,$column['table']);
+                }
+                return $result;
+            },[]);
+
             $this->table_name=Helper::studly_singular($table);
             $this->fillable=Helper::get_fillable_columns($table);
             $this->table_action=$config;
@@ -51,8 +60,6 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
             $output=$temp['output'];
             $content=$temp['content'];
             $this->generate($output,$content);
-
-            // Request
 
             // Repository
             $this->generate_for_repository();
@@ -120,7 +127,8 @@ class SimpleControllerGenerator extends BaseGeneratorRepository implements Contr
         $content="<?php".PHP_EOL.view('litegen::generator.controllers.controller_rest',[
                 "class"=>$this->table_name,
                 "config"=>$this->table_action,
-                "fillable"=>$this->fillable
+                "fillable"=>$this->fillable,
+                "relates"=>$this->relationships
             ])->render();
         return [
             "output"=>Configuration::get_project_path()."/app/Http/Controllers/$output",

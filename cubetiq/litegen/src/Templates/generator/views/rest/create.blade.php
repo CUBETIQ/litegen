@@ -8,7 +8,10 @@
 </h1>
 
 {!!"@"."php"!!}
+@foreach($relates as $relate)
 
+    ${{\Illuminate\Support\Str::snake($relate)}}=${{\Illuminate\Support\Str::snake($relate)}};
+@endforeach
 
 
 {!!"@"."endphp"!!}

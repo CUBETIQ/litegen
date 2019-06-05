@@ -78,7 +78,7 @@ abstract class BaseRepository implements BaseInterface
      * @return \Illuminate\Support\Collection
      */
     protected function scopeActive($data,$column="status",$comparator=">",$value="-1"){
-        return $data->where($column,$comparator,$value)->get();
+        return $data->where($column,$comparator,$value);
     }
 
 

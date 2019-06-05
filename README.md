@@ -6,8 +6,6 @@
 - We Recommend u to use this with a brand new project , or it will make a mess to ur exist project
 ## Installation Main Project
 
-
-
 > composer.json
 
 ``` json
@@ -42,9 +40,18 @@ $ composer install
 $ php artisan vendor:publish --provider="Cubetiq\Litegen\provider\LitegenServiceProvider"
 ```
 
+> Edit config/sample.php
+
 ## Usage
 
-> Edit config/sample.php
+> Initialize project
+>> Note : if you work on current project , do not run this
+
+``` sh
+$ php artisan litegen:init [--name=projectname] [--path=project path]
+```
+
+
 
 > create model
 

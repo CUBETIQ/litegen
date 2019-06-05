@@ -15,6 +15,15 @@ use App\Repository\{{$Class}}\{{$Classes}}Interface;
 use App\Resources\{{$Class}}\{{$Class}}Resource;
 use App\Http\Requests\{{$Class}}StoreRequest;
 use App\Http\Requests\{{$Class}}UpdateRequest;
+@foreach($relates as $relate)
+    @php
+    $repo_name=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::plural($relate));
+    $model_name=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::singular($relate));
+    @endphp
+
+use App\Repository\{{$model_name}}\{{$repo_name}}Interface;
+use App\Resources\{{$model_name}}\{{$model_name}}Resource;
+@endforeach
 
 
 class {{$Classes}}Controller extends Controller
@@ -54,7 +63,26 @@ class {{$Classes}}Controller extends Controller
     public function create()
     {
     //
-        return view('content.{{$Class}}.create');
+        @foreach($relates as $relate)
+            @php
+                $repo_name=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::plural($relate));
+                $name=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::singular($relate));
+            @endphp
+
+        ${{\Illuminate\Support\Str::snake($relate)}}=app()->make({{$repo_name}}Interface::class)->active()->all();
+        @endforeach
+
+        return view('content.{{$Class}}.create',[
+        @foreach($relates as $relate)
+            @php
+                $repo_name=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::plural($relate));
+                $name=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::singular($relate));
+            @endphp
+
+            "{{\Illuminate\Support\Str::snake($relate)}}"=>{{$name}}Resource::collection(${{\Illuminate\Support\Str::snake($relate)}}),
+        @endforeach
+
+        ]);
     }
 
     /**
@@ -92,9 +120,28 @@ class {{$Classes}}Controller extends Controller
     public function edit($id)
     {
     //
-        $item=$this->{{$class}}_repo->findfirst($id);
+    @foreach($relates as $relate)
+        @php
+            $repo_name=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::plural($relate));
+            $name=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::singular($relate));
+        @endphp
+
+    ${{\Illuminate\Support\Str::snake($relate)}}=app()->make({{$repo_name}}Interface::class)->active()->all();
+    @endforeach
+
+    $item=$this->{{$class}}_repo->findfirst($id);
         return view('content.{{$Class}}.edit',[
+    @foreach($relates as $relate)
+        @php
+            $repo_name=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::plural($relate));
+            $name=\Illuminate\Support\Str::studly(\Illuminate\Support\Str::singular($relate));
+        @endphp
+
+                "{{\Illuminate\Support\Str::snake($relate)}}"=>{{$name}}Resource::collection(${{\Illuminate\Support\Str::snake($relate)}}),
+    @endforeach
+
                 "item"=>$item
+
             ]
         );
     }

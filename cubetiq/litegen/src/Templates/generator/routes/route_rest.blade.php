@@ -38,7 +38,7 @@ Route::group(["as"=>"{{$name}}.","prefix"=>"{{$name}}"],function (){
         $name=\Illuminate\Support\Str::lower(\Illuminate\Support\Str::snake($config['name']));
     @endphp
 
-Route::get('/{{$name}}',function(){
+Route::get('/{{$config['uri'] ?? $name}}',function(){
     return view('content.{{$name}}');
 })->name('view.{{$name}}');
 @endforeach

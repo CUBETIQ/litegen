@@ -1,6 +1,6 @@
 <?php
 
-namespace Cubetiq\Litegen\Assets\provider;
+namespace App\Providers;
 
 
 use Illuminate\Support\ServiceProvider;

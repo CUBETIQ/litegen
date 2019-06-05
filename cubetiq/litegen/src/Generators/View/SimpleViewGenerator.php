@@ -6,6 +6,7 @@ namespace Cubetiq\Litegen\Generators\View;
 
 use Cubetiq\Litegen\Base\BaseGeneratorRepository;
 use Cubetiq\Litegen\Configuration;
+use Cubetiq\Litegen\Definitions\RelationshipType;
 use Cubetiq\Litegen\Generators\ViewGeneratorInterface;
 use Cubetiq\Litegen\Support\Helper;
 use Illuminate\Filesystem\Filesystem;
@@ -19,7 +20,8 @@ class SimpleViewGenerator extends BaseGeneratorRepository implements ViewGenerat
     private $table_action;
     private $table_actions;
     private $view_action;
-    private $all_configs;
+    private $relationships;
+    private $model;
 
     const AVAILABLE_VIEW_ACTION = [
         "index",
@@ -44,10 +46,20 @@ class SimpleViewGenerator extends BaseGeneratorRepository implements ViewGenerat
         $this->table_actions = $controllers['actions'];
         $this->view_action=$controllers['non-actions'];
 
+        $models=Configuration::get_model_configData()['data'];
+
         foreach ($this->table_actions as $table => $config) {
+            $this->relationships=array_reduce($models[$table],function ($result,$column){
+                if($column['type']==RelationshipType::BELONGS_TO){
+                    array_push($result,$column['table']);
+                }
+                return $result;
+            },[]);
+
             $this->table_name = Helper::studly_singular($table);
             $this->table_action = $config;
 
+            $this->model=$models[$table];
             // View
             $this->generate_view();
         }
@@ -98,7 +110,9 @@ class SimpleViewGenerator extends BaseGeneratorRepository implements ViewGenerat
         $output = $type . ".blade.php";
         $content = view("litegen::generator.views.rest.$type", [
             "class" => $this->table_name,
-            "config" => $this->table_action
+            "config" => $this->table_action,
+            "relates"=>$this->relationships,
+            "model"=>$this->model
         ])->render();
         $table = $this->table_name;
         return [
