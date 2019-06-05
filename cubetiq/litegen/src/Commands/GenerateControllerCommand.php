@@ -76,7 +76,7 @@ class GenerateControllerCommand extends Command
         Artisan::call('litegen:resource');
 
         // Controller Generate from here
-        Configuration::setConfigData(config('sample_controller'));
+        Configuration::setConfigData(config('sample'));
 
         if (!$this->isProjectExist()) {
             throw new \Exception("Project is not exist");

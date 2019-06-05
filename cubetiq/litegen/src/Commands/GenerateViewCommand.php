@@ -53,7 +53,7 @@ class GenerateViewCommand extends Command
     {
         Configuration::setProjectname($this->option('name'));
         Configuration::set_store_path($this->option('path'));
-        Configuration::setConfigData(config('sample_controller'));
+        Configuration::setConfigData(config('sample'));
 
         if (!$this->isProjectExist()) {
             throw new \Exception("Project is not exist");

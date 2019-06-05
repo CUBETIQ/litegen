@@ -71,6 +71,14 @@ $ php artisan litegen:migration [--name=projectname] [--path=project path]
 ``` sh
 $ php artisan litegen:controller [--name=projectname] [--path=project path] [-R : with route] [-I : with view] 
 ```
+> Make Your own Default Generate View Template
+
+``` sh
+$ php artisan litegen:myview [--name=projectname] [--path=project path]
+```
+
+
+
 
 ## Generated Project
 > install composer
