@@ -22,7 +22,12 @@ return [
      */
     "formatter" => \Cubetiq\Litegen\Generators\Formatter\SampleFormatter::class,
 
+
     /*
+     * to use here
+     * run :
+     *       php artisan litegen:myview
+     * then uncomment below
      * Template for renderer use for render template
      * Use in SimpleViewGenerator
      */
