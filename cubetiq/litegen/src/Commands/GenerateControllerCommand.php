@@ -24,7 +24,6 @@ class GenerateControllerCommand extends Command
     {--P|path= : Project Path (Default Current Path)}
     {--R|route : Generate with route}
     {--I|view : Generate with view)}
-    {--E|resource : Generate with resource)}
 
     
     ';
