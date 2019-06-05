@@ -176,9 +176,9 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*
-         * Lite Generator Provider
+         * Interface Repository Provider
          */
-        \Cubetiq\Litegen\provider\LitegenServiceProvider::class
+        \App\Providers\RepositoryInterfaceProvider::class
     ],
 
     /*
