@@ -1,15 +1,26 @@
+@php
+
+@endphp
+
 {!!"@"."extends('layouts.app')"!!}
 
 {!!"@"."section('content')"!!}
+
 <h1>
-    Show    {!!\Illuminate\Support\Str::studly($class)!!}
+    Create   {!!\Illuminate\Support\Str::studly($class)!!}
 </h1>
 
 {!!"@"."php"!!}
+@foreach($relates as $relate)
 
-dd($item);
+    ${{\Illuminate\Support\Str::snake($relate)}}=${{\Illuminate\Support\Str::snake($relate)}};
+@endforeach
+
 
 {!!"@"."endphp"!!}
+
+
+
 
 {!!"@"."stop"!!}
 

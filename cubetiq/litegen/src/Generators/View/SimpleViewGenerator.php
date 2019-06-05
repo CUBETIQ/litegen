@@ -108,9 +108,9 @@ class SimpleViewGenerator extends BaseGeneratorRepository implements ViewGenerat
     private function config_for_view($type)
     {
         $output = $type . ".blade.php";
-        $content = view("litegen::generator.views.rest.$type", [
+        $content = view(config("litegen.views.$type","litegen::generator.views.rest.$type"), [
             "class" => $this->table_name,
-            "config" => $this->table_action,
+            "action" => $this->table_action,
             "relates"=>$this->relationships,
             "model"=>$this->model
         ])->render();
