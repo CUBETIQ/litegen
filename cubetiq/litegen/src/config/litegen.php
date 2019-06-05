@@ -20,7 +20,7 @@ return [
      * Formatter use to make data fit with format in renderer
      * must implement Cubetiq\Litegen\Generators\FormatterInterface
      */
-    "formatter" => \Cubetiq\Litegen\Generators\Formatter\SampleFormatter::class,
+    "formatter" => \Cubetiq\Litegen\Generators\Formatter\NextFormatter::class,
 
 
     /*
