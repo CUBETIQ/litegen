@@ -16,13 +16,7 @@ class NextModelGenerator extends BaseGeneratorRepository implements ModelGenerat
     private $table_name;
     private $table_columns;
     private $origin_name;
-
-//    const RelationshipType=[
-//        ModelType::BELONGS_TO,
-//        ModelType::HAS_MANY,
-//        ModelType::HAS_ONE,
-//        ModelType::BELONGSTOMANY,
-//    ];
+    private $meta;
 
     public function parse()
     {
@@ -30,6 +24,7 @@ class NextModelGenerator extends BaseGeneratorRepository implements ModelGenerat
         foreach ($configs['data'] as $table => $columns) {
             $this->table_name = Str::singular(Str::studly($table));
             $this->origin_name=$table;
+            $this->meta=$configs['meta'][$table];
             $this->table_columns = $columns;
             $this->generate();
         }
@@ -53,7 +48,8 @@ class NextModelGenerator extends BaseGeneratorRepository implements ModelGenerat
                 "name" => $this->table_name,
                 "columns" => $this->table_columns,
                 "fillable" => $fillable,
-                "relationships" => $relationships
+                "relationships" => $relationships,
+                "meta"=>$this->meta
             ])->render();
     }
 

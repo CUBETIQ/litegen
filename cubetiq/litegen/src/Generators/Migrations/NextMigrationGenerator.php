@@ -20,6 +20,7 @@ class NextMigrationGenerator extends BaseGeneratorRepository implements Migratio
     ];
 
     private $table_name;
+    private $meta;
     private $table_config;
 
     private $files;
@@ -42,6 +43,7 @@ class NextMigrationGenerator extends BaseGeneratorRepository implements Migratio
 
             $this->table_name = Str::plural(Str::snake($table));
             $this->table_config = $columns;
+            $this->meta=$configs['meta'][$table];
 
             $temp = $this->config_for_columns();
             $output = $temp['output'];
@@ -92,7 +94,8 @@ class NextMigrationGenerator extends BaseGeneratorRepository implements Migratio
         $output = Carbon::now()->format('Y_m_d_Hisu') . "_create_" . $this->table_name . "_table.php";
         $content = "<?php" . PHP_EOL . view('litegen::generator.migrations.next.migration_column', [
                 "name" => $name,
-                "columns" => $this->table_config
+                "columns" => $this->table_config,
+                "meta"=>$this->meta
             ])->render();
         return [
             "output" => Configuration::get_project_path() . "/database/migrations/" . $output,

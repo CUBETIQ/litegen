@@ -27,15 +27,19 @@ class NextFormatter extends SampleFormatter implements FormatterInterface
     {
         $result=[];
         foreach ($data['tables'] as $table=>$configs){
-//            dd($configs);
             $result[$table]=array_map(function ($column){
                 $column['unique']=$column['unique'] ?? false;
                 $column['nullable']=$column['nullable'] ?? false;
                 return $column;
             },$configs['columns']);
+
+            $meta[$table]=[
+                "timestamps"=>$configs['meta']['timestamps'] ?? false
+            ];
         }
         return [
-            "data"=>$result
+            "data"=>$result,
+            "meta"=>$meta
         ];
     }
 }

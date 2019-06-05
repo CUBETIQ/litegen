@@ -64,7 +64,7 @@ class GenerateControllerCommand extends Command
 
         // Call Route
         if ($this->option('route')){
-            $this->info("run rioute");
+            $this->info("run route");
             Artisan::call('litegen:route');
         }
 
@@ -74,11 +74,7 @@ class GenerateControllerCommand extends Command
             Artisan::call('litegen:view');
         }
 
-        if ($this->option('resource')){
-            $this->info('run resource');
-            Artisan::call('litegen:resource');
-        }
-
+        Artisan::call('litegen:resource');
 
         // Controller Generate from here
         Configuration::setConfigData(config('sample_controller'));

@@ -46,7 +46,12 @@ class Create{{$Classes}}Table extends Migration
         @endif
 
 @endforeach
+
+@if($meta['timestamps'])
+
             $table->timestamps();
+@endif
+
         });
     }
 

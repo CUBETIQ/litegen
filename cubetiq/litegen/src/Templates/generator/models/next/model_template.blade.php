@@ -9,6 +9,8 @@ use App\Base\BaseModel;
 
 class {{$Class}} extends BaseModel
 {
+    public $timestamps={!!  $meta['timestamps']?"true":"false" !!};
+
     protected $table="{{$classes}}";
 
     protected $fillable=[{!!  sizeof($fillable)?"\"".implode("\",\"",$fillable)."\"":"" !!}];
