@@ -6,8 +6,6 @@
 - We Recommend u to use this with a brand new project , or it will make a mess to ur exist project
 ## Installation Main Project
 
-
-
 > composer.json
 
 ``` json
@@ -42,9 +40,17 @@ $ composer install
 $ php artisan vendor:publish --provider="Cubetiq\Litegen\provider\LitegenServiceProvider"
 ```
 
+> Edit config/sample.php
+
 ## Usage
 
-> Edit config/sample.php
+> Initialize project
+
+``` sh
+$ php artisan litegen:init [--name=projectname] [--path=project path]
+```
+
+
 
 > create model
 
@@ -64,8 +70,31 @@ $ php artisan litegen:migration [--name=projectname] [--path=project path]
 ``` sh
 $ php artisan litegen:controller [--name=projectname] [--path=project path] [-R : with route] [-I : with view] 
 ```
+> Make Your own Default Generate View Template
+
+``` sh
+$ php artisan litegen:myview [--name=projectname] [--path=project path]
+```
+
+
+
 
 ## Generated Project
+
+
+> config/app.php
+
+``` php
+'providers' => [
+        ...
+        /*
+         * Interface bind Repository Service Provider
+         */
+        \App\Providers\RepositoryInterfaceProvider::class
+    ],
+```
+
+
 > install composer
 
 ``` sh

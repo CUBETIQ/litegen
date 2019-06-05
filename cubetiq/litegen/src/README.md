@@ -80,6 +80,21 @@ $ php artisan litegen:myview [--name=projectname] [--path=project path]
 
 
 ## Generated Project
+> add provider
+
+> config/app.php
+
+``` php
+'providers' => [
+        ...
+        /*
+         * Lite Generator Provider
+         */
+        \Cubetiq\Litegen\provider\LitegenServiceProvider::class
+    ],
+```
+
+
 > install composer
 
 ``` sh

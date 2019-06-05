@@ -80,6 +80,21 @@ $ php artisan litegen:myview [--name=projectname] [--path=project path]
 
 
 ## Generated Project
+
+
+> config/app.php
+
+``` php
+'providers' => [
+        ...
+        /*
+         * Interface bind Repository Service Provider
+         */
+        \App\Providers\RepositoryInterfaceProvider::class
+    ],
+```
+
+
 > install composer
 
 ``` sh
