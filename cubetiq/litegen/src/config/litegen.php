@@ -1,8 +1,10 @@
 <?php
 
 return [
+    // If Null here , the default is your current project
     "project_store_path" => env("LITEGEN_PROJECT_STORE_PATH"),
-//
+
+    // If Null here , the default is your current project
     "project_name" => env("LITEGEN_PROJECT_NAME"),
 
     /**
