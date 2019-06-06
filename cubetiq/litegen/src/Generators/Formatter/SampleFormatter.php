@@ -11,11 +11,11 @@ class SampleFormatter implements FormatterInterface
 {
     public function format_for_model($data)
     {
-        $data= config('sample_model_migration');
-        foreach ($data['data'] as $table=>$columns){
-            foreach ($columns as $column=>$config){
-                $data['data'][$table][$column]['unique']=$config['unique'] ?? false;
-                $data['data'][$table][$column]['nullable']=$config['nullable'] ?? false;
+        $data = config('sample_model_migration');
+        foreach ($data['data'] as $table => $columns) {
+            foreach ($columns as $column => $config) {
+                $data['data'][$table][$column]['unique'] = $config['unique'] ?? false;
+                $data['data'][$table][$column]['nullable'] = $config['nullable'] ?? false;
             }
         }
         return $data;
@@ -30,9 +30,10 @@ class SampleFormatter implements FormatterInterface
     {
         return Configuration::get_model_configData();
     }
+
     public function format_for_resource($data)
     {
-        $models=Configuration::get_model_configData();
+        $models = Configuration::get_model_configData();
         return $models;
     }
 
@@ -46,4 +47,15 @@ class SampleFormatter implements FormatterInterface
         return Configuration::get_controllers_data();
     }
 
+    public function format_for_factory($data)
+    {
+        $models = Configuration::get_model_configData();
+        return $models;
+    }
+
+    public function format_for_seeder($data)
+    {
+        $models = Configuration::get_model_configData();
+        return $models;   // TODO: Implement format_for_seeder() method.
+    }
 }

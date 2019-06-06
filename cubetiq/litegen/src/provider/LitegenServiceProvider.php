@@ -13,6 +13,8 @@ use Cubetiq\Litegen\Commands\GenerateRouteCommand;
 use Cubetiq\Litegen\Commands\GenerateViewCommand;
 use Cubetiq\Litegen\Generators\Controller\SimpleControllerGenerator;
 use Cubetiq\Litegen\Generators\ControllerGeneratorInterface;
+use Cubetiq\Litegen\Generators\Factory\SimpleFactoryGenerator;
+use Cubetiq\Litegen\Generators\FactoryGeneratorInterface;
 use Cubetiq\Litegen\Generators\Formatter\SimpleFormatter;
 use Cubetiq\Litegen\Generators\FormatterInterface;
 use Cubetiq\Litegen\Generators\MigrationGeneratorInterface;
@@ -25,6 +27,8 @@ use Cubetiq\Litegen\Generators\Resource\SimpleResourceGenerator;
 use Cubetiq\Litegen\Generators\ResourceGeneratorInterface;
 use Cubetiq\Litegen\Generators\Route\SimpleRouteGenerator;
 use Cubetiq\Litegen\Generators\RouteGeneratorInterface;
+use Cubetiq\Litegen\Generators\Seeder\SimpleSeederGenerator;
+use Cubetiq\Litegen\Generators\SeederGeneratorInterface;
 use Cubetiq\Litegen\Generators\View\SimpleViewGenerator;
 use Cubetiq\Litegen\Generators\ViewGeneratorInterface;
 use Illuminate\Support\ServiceProvider;
@@ -55,6 +59,8 @@ class LitegenServiceProvider extends ServiceProvider
         $this->app->bind(ViewGeneratorInterface::class, config('litegen.renderer.view', SimpleViewGenerator::class));
         $this->app->bind(RouteGeneratorInterface::class, config('litegen.renderer.route', SimpleRouteGenerator::class));
         $this->app->bind(ResourceGeneratorInterface::class, config('litegen.renderer.resource', SimpleResourceGenerator::class));
+        $this->app->bind(FactoryGeneratorInterface::class, config('litegen.renderer.factory', SimpleFactoryGenerator::class));
+        $this->app->bind(SeederGeneratorInterface::class, config('litegen.renderer.seeder', SimpleSeederGenerator::class));
 
 
         $this->app->bind(FormatterInterface::class, config('litegen.formatter', SimpleFormatter::class));

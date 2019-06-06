@@ -107,4 +107,11 @@ class Configuration
     public static function get_resource_configData(){
         return self::getFormatter()->format_for_resource(self::getConfigData());
     }
+
+    public static function get_seeder_configData(){
+        return self::getFormatter()->format_for_resource(self::getConfigData());
+    }
+    public static function get_factory_configData(){
+        return self::getFormatter()->format_for_resource(self::getConfigData());
+    }
 }
