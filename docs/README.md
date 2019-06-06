@@ -1,4 +1,5 @@
 # Lite Generator Package
+Make your new project with pre config data
 
 ## Cautious
 - We Recommend u to use this with a brand new project , or it will make a mess to ur exist project
@@ -101,8 +102,12 @@ $ php artisan litegen:myview [--name=projectname] [--path=project path]
 $ composer install
 ```
 
-> run 
+> run server
 ``` sh
 $ php artisan serve
 ```
 
+## Processing
+<img src="./litegen.png"
+     alt="Lite Generator"
+     style="float: left; margin-right: 10px;" />
