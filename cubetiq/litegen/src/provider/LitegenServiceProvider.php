@@ -2,6 +2,7 @@
 
 namespace Cubetiq\Litegen\provider;
 
+use Cubetiq\Litegen\Commands\DatabaseToConfigCommand;
 use Cubetiq\Litegen\Commands\GenerateControllerCommand;
 use Cubetiq\Litegen\Commands\GenerateMigrationCommand;
 use Cubetiq\Litegen\Commands\GenerateInitializeCommand;

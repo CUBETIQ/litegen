@@ -29,20 +29,26 @@ class Create{{$Classes}}Table extends Migration
         @php
             $nullable=$rule['nullable'] ?? false ? '->nullable()':"";
             $unique=$rule['unique'] ?? false ? '->unique()':"";
+            $default=$rule['default'] ?? false ? '->default('.$rule['default'].')':"";
         @endphp
 
         @if($rule['type']===\Cubetiq\Litegen\Definitions\ModelType::DECIMAL)
 
-            $table->decimal('{{$column}}',{{$rule['length']}},{{$rule['scale']}}){!! $nullable !!}{!! $unique !!};
+            $table->decimal('{{$column}}',{{$rule['length']}},{{$rule['scale']}}){!! $nullable !!}{!! $unique !!}{!! $default !!};
         @elseif($rule['type']===\Cubetiq\Litegen\Definitions\ModelType::TEXT)
 
-            $table->string('{{$column}}',{{$rule['length']}}){!! $nullable !!}{!! $unique !!};
+            $table->string('{{$column}}',{{$rule['length']}}){!! $nullable !!}{!! $unique !!}{!! $default !!};
         @elseif($rule['type']===\Cubetiq\Litegen\Definitions\ModelType::DATETIME)
 
-            $table->datetime('{{$column}}'){!! $nullable !!}{!! $unique !!};
+            $table->datetime('{{$column}}'){!! $nullable !!}{!! $unique !!}{!! $default !!};
         @elseif($rule['type']===\Cubetiq\Litegen\Definitions\ModelType::INTEGER)
 
-            $table->bigInteger("{{$column}}"){!! $nullable !!}{!! $unique !!};
+            $table->bigInteger("{{$column}}"){!! $nullable !!}{!! $unique !!}{!! $default !!};
+        @elseif($rule['type']===\Cubetiq\Litegen\Definitions\ModelType::TEXTAREA)
+
+            $table->text("{{$column}}"){!! $nullable !!}{!! $unique !!}{!! $default !!};
+        @else
+
         @endif
 
 @endforeach
