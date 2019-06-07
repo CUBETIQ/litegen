@@ -44,6 +44,5 @@ return [
 @endforeach
 
 ];
-return parent::toArray($request);
 }
 }

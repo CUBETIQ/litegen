@@ -32,7 +32,7 @@ class {{$class}}Relationship extends JsonResource
         @endif
     @endforeach
 
+            "output"=>""
         ];
-    return parent::toArray($request);
     }
 }
