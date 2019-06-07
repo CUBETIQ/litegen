@@ -45,7 +45,7 @@
             @else
 
                 <th>{{"{{".'json_encode($item'}}
-                    ['{{\Illuminate\Support\Str::studly(\Illuminate\Support\Str::lower($model[$column]['table']))}}'])}}
+                    ['{{\Illuminate\Support\Str::lower(\Illuminate\Support\Str::studly($model[$column]['table']))}}'])}}
                 </th>
             @endif
         @endforeach
