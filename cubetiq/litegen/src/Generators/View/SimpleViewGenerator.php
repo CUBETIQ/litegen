@@ -10,6 +10,7 @@ use Cubetiq\Litegen\Definitions\RelationshipType;
 use Cubetiq\Litegen\Generators\ViewGeneratorInterface;
 use Cubetiq\Litegen\Support\Helper;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Symfony\Component\Routing\RouteCollection;
@@ -39,7 +40,7 @@ class SimpleViewGenerator extends BaseGeneratorRepository implements ViewGenerat
 
     public function parse()
     {
-        $this->files->deleteDirectory(Configuration::get_project_path().'/resources/views');
+        $this->files->deleteDirectory(Configuration::get_project_path().'/resources/views/content');
 
         $controllers = Configuration::get_view_configData();
 
@@ -66,27 +67,28 @@ class SimpleViewGenerator extends BaseGeneratorRepository implements ViewGenerat
 
         // For Non action View
         foreach ($this->view_action as $config){
-            $this->table_name=Str::lower(Str::snake($config['name']));
+            $this->table_name=Str::lower(Str::snake($config['view'] ?? $config['name']));
             $this->table_action=$config;
             $temp = $this->config_for_non_action();
             $output = $temp['output'];
             $content = $temp['content'];
             $this->generate($output, $content);
         }
+//
+//        // For Layout Side
+//        $temp = $this->config_for_side();
+//        $output = $temp['output'];
+//        $content = $temp['content'];
+//        $this->generate($output, $content);
+//
+//        // For Layout App
+//        $temp = $this->config_for_app();
+//        $output = $temp['output'];
+//        $content = $temp['content'];
+//        $this->generate($output, $content);
 
-        // For Layout Side
-        $temp = $this->config_for_side();
-        $output = $temp['output'];
-        $content = $temp['content'];
-        $this->generate($output, $content);
 
-        // For Layout App
-        $temp = $this->config_for_app();
-        $output = $temp['output'];
-        $content = $temp['content'];
-        $this->generate($output, $content);
-
-
+        Artisan::call('view:clear');
     }
 
     private function generate_view()

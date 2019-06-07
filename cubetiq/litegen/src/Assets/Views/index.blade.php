@@ -41,7 +41,7 @@
                 <th>{{"{{".'$item'}}['{{$column}}']}}</th>
             @elseif($model[$column]['type']==\Cubetiq\Litegen\Definitions\RelationshipType::BELONGS_TO)
 
-                <th>{{"{{".'$item'}}['{{$column}}']['name']}}</th>
+                <th>{{"{{".'$item'}}['{{$column}}']['output']}}</th>
             @else
 
                 <th>{{"{{".'json_encode($item'}}

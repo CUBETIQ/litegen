@@ -24,7 +24,7 @@ class SimpleRouteGenerator extends BaseGeneratorRepository implements RouteGener
 
     protected function getTargetPath()
     {
-        $output="web.php";
+        $output="content.php";
         return Configuration::get_project_path()."/routes/$output";
 
     }

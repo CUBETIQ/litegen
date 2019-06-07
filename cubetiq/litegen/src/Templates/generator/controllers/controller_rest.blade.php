@@ -48,7 +48,7 @@ class {{$Classes}}Controller extends Controller
     //
         ${{$classes}}=$this->{{$class}}_repo->all();
         return view('content.{{$name}}.index',[
-            "items"=>{{$Class}}Resource::collection(${{$classes}})
+            "items"=>{{$Class}}Resource::collection(${{$classes}})->toArray(\request())
         ]);
     }
 
@@ -130,6 +130,7 @@ class {{$Classes}}Controller extends Controller
     @endforeach
 
     $item=$this->{{$class}}_repo->findfirst($id);
+    $item=$item->toArray(\request());
         return view('content.{{$Class}}.edit',[
     @foreach($relates as $relate)
         @php
@@ -196,6 +197,7 @@ class {{$Classes}}Controller extends Controller
     public function show($id)
     {
         $item=$this->{{$class}}_repo->findfirst($id);
+        $item=$item->toArray(\request());
         return view('content.{{$Class}}.show',[
             "item"=> new {{$Class}}Resource($item)
             ]

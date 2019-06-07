@@ -39,6 +39,6 @@ Route::group(["as"=>"{{$name}}.","prefix"=>"{{$name}}"],function (){
     @endphp
 
 Route::get('/{{$config['uri'] ?? $name}}',function(){
-    return view('content.{{$name}}');
+    return view('content.{{$config['view'] ?? $name}}');
 })->name('view.{{$name}}');
 @endforeach
