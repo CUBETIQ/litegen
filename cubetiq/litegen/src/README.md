@@ -1,9 +1,18 @@
 # Lite Generator Package
+Make your new project with pre config data
 
 ## Cautious
 - We Recommend u to use this with a brand new project , or it will make a mess to ur exist project
 - We Recommend u to use this with a brand new project , or it will make a mess to ur exist project
 - We Recommend u to use this with a brand new project , or it will make a mess to ur exist project
+
+----
+
+## On this page
+
+- TOC
+
+----
 ## Installation Main Project
 
 > composer.json
@@ -42,6 +51,7 @@ $ php artisan vendor:publish --provider="Cubetiq\Litegen\provider\LitegenService
 
 > Edit config/sample.php
 
+----
 ## Usage
 
 > Initialize project
@@ -61,7 +71,7 @@ $ php artisan litegen:model [--name=projectname] [--path=project path]
 > create migration
 
 ``` sh
-$ php artisan litegen:migration [--name=projectname] [--path=project path]
+$ php artisan litegen:migration [--name=projectname] [--path=project path] [--seeder : make seeder and factory]
 ```
 
 
@@ -75,12 +85,13 @@ $ php artisan litegen:controller [--name=projectname] [--path=project path] [-R 
 ``` sh
 $ php artisan litegen:myview [--name=projectname] [--path=project path]
 ```
+----
+**Warning** :
+you should `composer dumpauto` everytime you generate new class 
 
-
-
-
+----
 ## Generated Project
-> add provider
+
 
 > config/app.php
 
@@ -88,9 +99,9 @@ $ php artisan litegen:myview [--name=projectname] [--path=project path]
 'providers' => [
         ...
         /*
-         * Lite Generator Provider
+         * Interface bind Repository Service Provider
          */
-        \Cubetiq\Litegen\provider\LitegenServiceProvider::class
+        \App\Providers\RepositoryInterfaceProvider::class
     ],
 ```
 
@@ -101,8 +112,15 @@ $ php artisan litegen:myview [--name=projectname] [--path=project path]
 $ composer install
 ```
 
-> run 
+> run server
 ``` sh
 $ php artisan serve
 ```
+
+----
+## Processing
+<img src="./docs/litegen.png"
+     alt="Lite Generator"
+     style="float: left; margin-right: 10px;" />
+
 
