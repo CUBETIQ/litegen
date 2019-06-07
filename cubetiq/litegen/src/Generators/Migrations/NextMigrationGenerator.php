@@ -9,6 +9,7 @@ use Cubetiq\Litegen\Configuration;
 use Cubetiq\Litegen\Definitions\ModelType;
 use Cubetiq\Litegen\Definitions\RelationshipType;
 use Cubetiq\Litegen\Generators\MigrationGeneratorInterface;
+use Cubetiq\Litegen\Generators\SeederGeneratorInterface;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
@@ -24,6 +25,7 @@ class NextMigrationGenerator extends BaseGeneratorRepository implements Migratio
     private $table_config;
 
     private $files;
+    private $seeder;
 
     public function __construct(Filesystem $fs)
     {

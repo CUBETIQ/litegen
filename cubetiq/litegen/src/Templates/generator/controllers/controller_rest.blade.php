@@ -48,7 +48,7 @@ class {{$Classes}}Controller extends Controller
     //
         ${{$classes}}=$this->{{$class}}_repo->all();
         return view('content.{{$name}}.index',[
-            "{{$classes}}"=>{{$Class}}Resource::collection(${{$classes}})
+            "items"=>{{$Class}}Resource::collection(${{$classes}})
         ]);
     }
 

@@ -4,7 +4,7 @@
 namespace Cubetiq\Litegen\Generators;
 
 
- interface FormatterInterface
+interface FormatterInterface
 {
     /**
      * formatter config match to do migration format
@@ -54,4 +54,20 @@ namespace Cubetiq\Litegen\Generators;
       */
      public function format_for_resource($data);
 
-}
+     /**
+      * Format Given data to Seeder Format
+      *
+      * @param $data
+      * @return mixed
+      */
+     public function format_for_seeder($data);
+
+     /**
+      * Format Given data to Factory Format
+      *
+      * @param $data
+      * @return mixed
+      */
+     public function format_for_factory($data);
+
+ }
