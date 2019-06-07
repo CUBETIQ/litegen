@@ -24,22 +24,6 @@ class SimpleSeederGenerator extends BaseGeneratorRepository implements SeederGen
             $this->generate();
         }
 
-        // Register to Database Seeder
-        $temp=$this->config_for_register();
-        $output=$temp['output'];
-        $content=$temp['content'];
-        $this->generate($output,$content);
-    }
-
-    private function config_for_register(){
-        $name="DatabaseSeeder.php";
-        $content="<?php".PHP_EOL.view('litegen::generator.seeders.dbseeder',[
-            "names"=>$this->table_names
-        ])->render();
-        return [
-            "output"=>Configuration::get_project_path()."/database/seeds/".$name,
-            "content"=>$content
-        ];
     }
 
     protected function getContent()

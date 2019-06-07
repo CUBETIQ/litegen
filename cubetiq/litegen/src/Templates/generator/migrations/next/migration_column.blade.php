@@ -47,6 +47,9 @@ class Create{{$Classes}}Table extends Migration
         @elseif($rule['type']===\Cubetiq\Litegen\Definitions\ModelType::TEXTAREA)
 
             $table->text("{{$column}}"){!! $nullable !!}{!! $unique !!}{!! $default !!};
+        @elseif($rule['type']===\Cubetiq\Litegen\Definitions\ModelType::BOOLEAN)
+
+            $table->boolean("{{$column}}"){!! $nullable !!}{!! $unique !!}{!! $default !!};
         @else
 
         @endif

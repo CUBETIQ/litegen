@@ -4,6 +4,7 @@ namespace Cubetiq\Litegen\Commands;
 
 use Cubetiq\Litegen\Base\traits\SubProjectContoller;
 use Cubetiq\Litegen\Configuration;
+use Cubetiq\Litegen\Generators\FactoryGeneratorInterface;
 use Cubetiq\Litegen\Generators\MigrationGeneratorInterface;
 use Cubetiq\Litegen\Generators\SeederGeneratorInterface;
 use Illuminate\Console\Command;
@@ -47,7 +48,7 @@ class GenerateMigrationCommand extends Command
      *
      * @return void
      */
-    public function __construct(MigrationGeneratorInterface $mig,SeederGeneratorInterface $sd,SeederGeneratorInterface $fac)
+    public function __construct(MigrationGeneratorInterface $mig,SeederGeneratorInterface $sd,FactoryGeneratorInterface $fac)
     {
         $this->factory=$fac;
         $this->seeder=$sd;
