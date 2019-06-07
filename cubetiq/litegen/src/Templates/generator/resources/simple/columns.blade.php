@@ -35,10 +35,10 @@ return [
         @endphp
         @if(in_array($config['type'],[\Cubetiq\Litegen\Definitions\RelationshipType::BELONGS_TO,\Cubetiq\Litegen\Definitions\RelationshipType::HAS_ONE]))
 
-        "{{$column}}"=>new \App\Resources\{{$Foreign}}\{{$Foreign}}Relationship($this->{{$Foreign}}),
+        "{{$column}}"=>collect(new \App\Resources\{{$Foreign}}\{{$Foreign}}Relationship($this->{{$Foreign}})),
         @else
 
-        "{{$column}}"=>\App\Resources\{{$Foreign}}\{{$Foreign}}Relationship::collection(collect($this->{{$Foreigns}})),
+        "{{$column}}"=>collect(\App\Resources\{{$Foreign}}\{{$Foreign}}Relationship::collection(collect($this->{{$Foreigns}}))),
         @endif
     @endif
 @endforeach
