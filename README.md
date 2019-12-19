@@ -1,5 +1,5 @@
 # Lite Generator Package
-Make your new project with pre config data
+Make your new project with pre config data and some scaffold.
 
 ## Cautious
 - We Recommend u to use this with a brand new project , or it will make a mess to ur exist project
